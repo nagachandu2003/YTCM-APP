@@ -1,0 +1,18 @@
+.profile-cont{
+    text-align: center;
+    font-size:15px;
+    color: black;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.profile-icon{
+    height:50px;
+    width:50px;
+}
+.profile-item-cont{
+    color:black;
+    display: flex;
+    align-items: center;
+    border-bottom:2px solid gray;
+}
