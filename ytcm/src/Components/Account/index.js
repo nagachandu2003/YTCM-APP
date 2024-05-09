@@ -37,7 +37,7 @@ const Account = () => {
   const onClickLogout = () => {
     googleLogout();
     console.log('Logged out successfully');
-    window.location.href = '/ytmclogin';
+    window.location.href = '/';
   };
 
   return (
