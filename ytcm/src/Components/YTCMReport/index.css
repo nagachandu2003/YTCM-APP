@@ -56,17 +56,18 @@ body {
   
   .ytmcreportBtn {
     position: fixed;
-    bottom: 80px; /* Adjust the distance from the bottom as needed */
+    bottom: 80px; 
     right: 20px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #FFFF00;
+    width:60px;
+    color: black;
+    padding:5px;
+    font-weight:bold;
     border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
+    border-radius:16px;
+    font-size: 15px;
     cursor: pointer;
-    z-index: 1000; /* Ensure button is above other content */
+    z-index:1000;
   }
   
   /* Additional styles for responsiveness */
@@ -111,12 +112,17 @@ body {
   .closeBtn {
     background-color: #dc3545;
     color: #fff;
+    border-width:0;
+    padding:5px;
+    border-radius:5px;
+    margin-top:10px;
   }
   
-  /* .fetchBtn {
+  .fetchBtn {
+    margin-top:10px;
     background-color: #007bff;
     color: #fff;
-  } */
+  }
 
    .logoutBtn{
     padding:10px;

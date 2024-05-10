@@ -555,7 +555,7 @@ class YTCMReport extends Component{
             <div className="ytmchome-main-container">
                 <div>
                 <Popup
-                        trigger={<button className="ytmcreportBtn">+</button>}
+                        trigger={<button className="ytmcreportBtn">New +</button>}
                         modal
                         nested
                     >
@@ -596,18 +596,18 @@ class YTCMReport extends Component{
                     <div className="ytmchome-main-inner-container">
                 <div className="ytmchome-top-container">
                     <div className="ytmchome-top-flex-container">
-                    <h1>Report</h1>
+                    <h1>Channels</h1>
                     {/* <button onClick={this.onClickLogout} type="button" className="logoutBtn">Log Out</button> */}
                     </div>
                 </div>
                 {isLoading===true && (
-                    <div className="ytmchome-content-container">
+                    <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>
                     </div>
                 )}
                 {isLoading===false && (
                 <div className="ytmchome-content-container">
-                    <h1>Your Channels</h1>
+                    {/* <h1>Your Channels</h1> */}
                     {(channelsList.length===0)? (<p>Please add Channels</p>):
                     (<ul className="ytmchome-channel-container">
                       {channelsList.map((ele) => <YTMCChannelItem key={ele.id} itemDetails={ele}/>)}

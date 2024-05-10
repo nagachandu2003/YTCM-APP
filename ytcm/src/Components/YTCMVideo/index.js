@@ -111,7 +111,7 @@ const YTCMVideo = () => {
       nextDate.setDate(nextDate.getDate() + i); // Add the day offset
       dateArray.push(nextDate.toLocaleDateString()); // Push the formatted date into the array
     }
-    const obj = { videoUrl, id: uuidv4(),videoId:videoid,videoDate:currentDate.toLocaleDateString(),videoName: title, views: viewCount, channelTitle:channelName, email: Cookies.get('useremail'), days: [viewCount,0,0,0,0,0,0],dateArray };
+    const obj = { videoUrl, id: uuidv4(),videoId:videoid,videoDate:currentDate.toLocaleDateString(),videoTime:currentDate.toLocaleTimeString(),videoName: title, views: viewCount, channelTitle:channelName, email: Cookies.get('useremail'), days: [viewCount,0,0,0,0,0,0],dateArray };
     const newObj = [...videosList, obj];
     addVideo(obj);
     // console.log(obj)
@@ -131,7 +131,7 @@ const YTCMVideo = () => {
       <div className="ytmchome-main-container">
         <div>
           <Popup
-            trigger={<button className="ytmcreportBtn">+</button>}
+            trigger={<button className="ytmcreportBtn">New +</button>}
             modal
             nested
           >
@@ -173,20 +173,19 @@ const YTCMVideo = () => {
         </div>
         <div className="ytmchome-top-container">
           <div className="ytmchome-top-flex-container">
-            <h1>YTMC</h1>
+            <h1>Videos</h1>
             {/* <button onClick={onClickLogout} type="button" className="logoutBtn">
               Log Out
             </button> */}
           </div>
         </div>
           {isLoading===true && (
-                    <div className="ytmchome-content-container">
+                    <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>
                     </div>
                 )}
           {isLoading===false && (
           <div className="ytmchome-content-container">
-            <h1>Your Videos</h1>
             {(videosList===undefined || videosList.length === 0) ? (
               <p>Please add Videos</p>
             ) : (

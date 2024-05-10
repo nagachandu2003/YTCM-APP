@@ -1,3 +1,7 @@
+*{
+    font-family:"Roboto" !important;
+}
+
 .ytmcchannel-list-item{
     background-color: white;
     text-align: center;
@@ -18,16 +22,16 @@
     padding:5px;
     border-width:0px;
     border-radius:3px;
-    margin-left:10px;
 }
 .user-img{
     height:100px;
     width:100px;
-    margin-right:5px;
+    margin-left:5px;
 }
 .list-item-cont{
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .ytmchome-custom-popup{

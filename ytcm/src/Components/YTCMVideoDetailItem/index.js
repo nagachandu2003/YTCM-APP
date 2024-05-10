@@ -4,11 +4,13 @@ import { ThreeDots } from "react-loader-spinner"
 import { googleLogout } from "@react-oauth/google"
 import Cookies from 'js-cookie'
 import Footer from '../YTCMFooter'
+import "./index.css"
 
 const YTCMVideoDetailItem = () => {
     const {videoid,channelName} = useParams()
     console.log(videoid)
     console.log(channelName)
+    const [videoName,setVideoName] = useState('');
     const [isLoading,setIsLoading] = useState(false)
     const [days, setDays] = useState([]);
     const [dateArray,setDateArray] = useState([]);
@@ -28,9 +30,11 @@ const YTCMVideoDetailItem = () => {
             const response = await fetch(`https://js-member-backend.vercel.app/ytmcvideo/channel/videostats`,options);
             if(response.ok===true){
             const data = await response.json()
-            const {days,videoDate,dateArray} = data.videoItem
+            console.log(data)
+            const {days,videoDate,dateArray,VideoName} = data.videoItem
             setDays(days)
             setDateArray(dateArray)
+            setVideoName(data.videoItem.videoName)
             setIsLoading(false)
             }
             }
@@ -46,7 +50,7 @@ const YTCMVideoDetailItem = () => {
     const onClickLogout = () => {
         googleLogout();
         console.log('Logged out successfully');
-        window.location.href = '/ytmclogin';
+        window.location.href = '/login';
       };
 
       let totviews = 0,totrewardpoints = 0;
@@ -58,28 +62,31 @@ const YTCMVideoDetailItem = () => {
           totrewardpoints += values/100
         }
       }
+      console.log(videoName)
 
     return (
         <>
         <div className="ytmchome-main-container">
         <div className="ytmchome-top-container">
           <div className="ytmchome-top-flex-container">
-            <h1>Video Details</h1>
-            <button onClick={onClickLogout} type="button" className="logoutBtn">
+            <h1>Views</h1>
+            {/* <button onClick={onClickLogout} type="button" className="logoutBtn">
               Log Out
-            </button>
+            </button> */}
           </div>
         </div>
           {isLoading===true && (
-                    <div className="ytmchome-content-container">
+                    <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>
                     </div>
                 )}
           {isLoading===false && (
           <div className="ytmchome-content-container">
-            <h2>7 Day Views & Reward</h2>
-            <table border="1" style={{margin:'auto',backgroundColor:'white',color:'black', borderCollapse:'collapse'}}>
-                <thead>
+            <h3 style={{textAlign:'left'}}>Channel: {channelName}</h3>
+            <h3 style={{textAlign:'left'}}>Video: {videoName}</h3>
+            {/* <h3 style={{textAlign:'left'}}>Views & Reward</h3> */}
+            <table>
+                <thead >
                     <tr>
                     <th>Days</th>
                     <th>Date</th>
