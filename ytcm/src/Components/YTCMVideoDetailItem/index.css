@@ -4,6 +4,8 @@ table {
     background-color: white;
     color:black;
     margin:auto;
+    min-width: 300px;
+    width:80%;
 }
 table thead tr{
     background-color: #ffcd1a;

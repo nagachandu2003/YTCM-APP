@@ -11,8 +11,8 @@ const YTCMVideoItem = (props) => {
             <div className="list-item-cont2">
             <img className="user-img" src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt="thumbnail"/>
             <div style={{width:'80%',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-            <p style={{margin:'0',fontSize:'12px'}}>Date : {videoDate}</p>
-            <p style={{margin:'0',fontSize:'12px'}}>Time : {time}</p>
+            <p style={{margin:'0',fontSize:'13px'}}>{videoDate} & {time}</p>
+            {/* <p style={{margin:'0',fontSize:'12px'}}>Time : {time}</p> */}
             {/* <div className="ytmcchannel-link-btn" style={{display:'flex',alignItems:'center'}}> */}
             <Link to={`/video/videoinfo/${channelTitle}/${videoId}`}>
             <button type="button" className="view-Btn">Views</button>

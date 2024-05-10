@@ -12,7 +12,7 @@ const YTCMChannelItem = (props) => {
             <a style={{textDecoration:'none', color:'black'}} href={url} target="_blank" rel="noreferrer"><h3>{channelName}</h3></a>
             <p>{channelDate}</p>
             <Link to={`/video/${channelName}`}>
-            <button type="button" className="view-Btn">View</button>
+            <button type="button" className="view-Btn">Views</button>
             </Link>
             </div>
             <img className="user-img" src="https://imgs.search.brave.com/mVZUg9yLtbGziLSE-n97XJJN60bZQoIZN199kEK-RIE/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4t/aWNvbnMtcG5nLmZy/ZWVwaWsuY29tLzI1/Ni8xMzg0LzEzODQw/NjAucG5n" alt="img" />

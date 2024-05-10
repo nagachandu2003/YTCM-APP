@@ -560,36 +560,37 @@ class YTCMReport extends Component{
                         nested
                     >
                         {close => (
-                        <div className="modal ytmchome-custom-popup">
-                            {
-                            /* <button className="close " onClick={close}>
-                            &times;
-                            </button> */
-                            }
-                            {/* <div className="header popup-cont"> Add Link </div> */}
-                            <div className="content ytmchome-popup-cont2">
-                            <form onSubmit={this.onSubmitUrl}>
-                                <div>
+                    <div className="modal modal1 ytmchome-custom-popup1">
+                    <div className="header popup-cont1"> Add Link </div>
+                    <div className="content ytmchome-popup-cont2">
+                        <form onSubmit={this.onSubmitUrl}>
+                            <div>
                                 <label htmlFor="channelurl">Channel URL</label>
                                 <br/>
-                                <input placeholder="Enter the Channel Url" onChange={this.onChangeChannelUrl} className="ytmchome-user-input" type="url" id="channelurl" required/>
-                                </div>
-                                <div className="actions">
-                            <button
-                                className="button closeBtn"
-                                onClick={() => {
-                                console.log('modal closed ');
-                                close();
-                                }}
-                            >
-                                Cancel
-                            </button>
-                            <button className="fetchBtn" onClick={this.onClickAddChannel} type="submit">Add Channel</button>
+                                <input
+                                    placeholder="Enter the Channel Url"
+                                    onChange={this.onChangeChannelUrl}
+                                    className="ytmchome-user-input"
+                                    type="url"
+                                    id="channelurl"
+                                    required
+                                />
                             </div>
-
-                            </form>
-                            </div>                        
+                            <div className="actions actions1">
+                                <button
+                                    className="button closeBtn1"
+                                    onClick={() => {
+                                        console.log('modal closed ');
+                                        close();
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                                <button className="fetchBtn1" onClick={this.onClickAddChannel} type="submit">Add Channel</button>
                             </div>
+                        </form>
+                    </div>
+                </div>
                         )}
                     </Popup>
                     </div>

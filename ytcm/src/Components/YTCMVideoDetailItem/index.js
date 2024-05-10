@@ -30,7 +30,7 @@ const YTCMVideoDetailItem = () => {
             const response = await fetch(`https://js-member-backend.vercel.app/ytmcvideo/channel/videostats`,options);
             if(response.ok===true){
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
             const {days,videoDate,dateArray,VideoName} = data.videoItem
             setDays(days)
             setDateArray(dateArray)
@@ -85,6 +85,7 @@ const YTCMVideoDetailItem = () => {
             <h3 style={{textAlign:'left'}}>Channel: {channelName}</h3>
             <h3 style={{textAlign:'left'}}>Video: {videoName}</h3>
             {/* <h3 style={{textAlign:'left'}}>Views & Reward</h3> */}
+            <hr style={{border:"1px solid white",margin:'10px 0 10px 0'}}/>
             <table>
                 <thead >
                     <tr>

@@ -91,7 +91,7 @@ const YTCMVideo = () => {
     };
     const response = await fetch(`https://js-member-backend.vercel.app/users/addvideo/${channelName}`, options);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
   };
 
   const onClickAddChannel = async (event) => {
@@ -99,7 +99,7 @@ const YTCMVideo = () => {
     const videoid = getVideoId(videoUrl);
     const response = await fetch(`https://www.googleapis.com/youtube/v3/videos?key=${process.env.REACT_APP_API_KEY}&id=${videoid}&part=snippet,contentDetails,statistics`);
     const data = await response.json();
-    console.log(data)
+    // console.log(data)
     // console.log("API KEY"+process.env.REACT_APP_API_KEY)
     const { title } = data.items[0].snippet;
     const { viewCount } = data.items[0].statistics;

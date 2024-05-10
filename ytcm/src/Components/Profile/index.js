@@ -53,7 +53,7 @@ const Profile = () => {
           </div>
         </div>
           {isLoading===true && (
-                    <div className="ytmchome-content-container">
+                    <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>
                     </div>
                 )}
