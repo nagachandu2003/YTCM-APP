@@ -1,14 +1,23 @@
 import {Link} from 'react-router-dom'
 
 const RewardItem = (props) => {
-    const {itemDetails} = props
-    const {videoUrl,videoId,videoName,views,videoDate,channelTitle,videoTime} = itemDetails
+    const {itemDetails,onCheckReward} = props
+    const {id,videoUrl,videoId,videoName,views,videoDate,channelTitle,videoTime,days,claim} = itemDetails
     const time = videoTime?videoTime:(new Date().toLocaleTimeString())
     // const url = `https://www.youtube.com/watch?v=${videoId}`
     const dateObj = new Date(videoDate)
     const day = dateObj.getDate().toString().padStart(2, '0');
     const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Note: Month is zero-indexed, so we add 1
     const year = dateObj.getFullYear().toString() // Extract the last two digits of the year
+
+    const onCheck = () =>  {
+        onCheckReward(id)
+    }
+
+    const getRewards = (arr) => {
+        const sumo = arr.reduce((acc,item) => acc + (parseInt(item)/100),0)
+        return sumo;
+    }
 
 // Format the date as dd/mm/yy
 const formattedDate = `${day}/${month}/${year}`;
@@ -21,9 +30,10 @@ const formattedDate = `${day}/${month}/${year}`;
             <div style={{width:'80%',display:'flex',flexDirection:'column',alignItems:'flex-end'}}>
                 <div style={{display:'flex'}}>
                 <label id="claim">Claim</label>
-                <input type="checkbox" htmlFor="claim"/>
+                <input onChange={onCheck} checked={claim} type="checkbox" htmlFor="claim"/>
                 </div>
             <p style={{margin:'0',fontSize:'13px'}}>{time} , {formattedDate}</p>
+            <p style={{margin:'0',fontSize:'13px'}}>Rewards : {getRewards(days)}</p>
             <br/>
             {/* <p style={{margin:'0',fontSize:'12px'}}>Time : {time}</p> */}
             {/* <div className="ytmcchannel-link-btn" style={{display:'flex',alignItems:'center'}}> */}

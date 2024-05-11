@@ -15,6 +15,17 @@ const Reward = () => {
   const [videosList, setVideosList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const onCheckReward = (value) => {
+    let newList = videosList.map((ele) => {
+      if(ele.id===value)
+        {
+          return {...ele,claim:!ele.claim}
+        }
+        return ele
+    })
+    setVideosList(newList)
+  }
+
   useEffect(() => {
     const getVideos = async () => {
       setIsLoading(true)
@@ -24,7 +35,8 @@ const Reward = () => {
         if(response.ok)
           {
             const data = await response.json()
-            setVideosList(data.result)
+            const newVideosList = (data.result).map((ele) => ({...ele,claim:false}))
+            setVideosList(newVideosList)
             setIsLoading(false)
             console.log(data);
           }
@@ -37,6 +49,11 @@ const Reward = () => {
     // Call getVideos only once on mount
     getVideos();
   }, []); // Empty dependency array means it runs only once on mount
+
+  const claimList = videosList.filter((ele) => ele.claim===true)
+  let sumo = 0;
+  if(claimList.length!==0)
+  sumo = claimList.reduce((acc,item) => acc + item.days.reduce((acc1,item1) => acc1 + (parseInt(item1)/100),0),0)
 
 
   // const getVideos = async () => {
@@ -54,6 +71,7 @@ const Reward = () => {
   //   }
   // }
 
+
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
@@ -66,7 +84,7 @@ const Reward = () => {
     <>
       <header className="task-main-header-container">
         <h1 className="task-main-heading">Reward</h1>
-        <p>Total :</p>
+        <p>Total : {sumo}</p>
       </header>
       <nav className="task-tabs-container">
         <div
@@ -98,7 +116,7 @@ const Reward = () => {
             ) : (
               <ul className="ytmchome-channel-container">
                 {videosList.map((ele) => (
-                  <RewardItem key={ele.id} itemDetails={ele} />
+                  <RewardItem key={ele.id} itemDetails={ele} onCheckReward={onCheckReward} />
                 ))}
               </ul>
             )}
