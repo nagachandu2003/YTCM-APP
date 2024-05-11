@@ -107,7 +107,7 @@ const formattedDate = `${day}/${month}/${year}`;
           <div className="ytmchome-content-container">
             <h2 style={{textAlign:'left'}}>Channel: <span className="span-item">{channelName}</span></h2>
             <h2 style={{textAlign:'left'}}>Video: <span className="span-item">{videoName}</span></h2>
-            <h2 style={{textAlign:'left'}}>Upload Date & Time : <span className="span-item">{videoTime} , {formattedDate}</span></h2>
+            <h2 style={{textAlign:'left'}}>Uploaded : <span className="span-item">{videoTime} , {formattedDate}</span></h2>
             {/* <h3 style={{textAlign:'left'}}>Views & Reward</h3> */}
             <hr style={{border:"1px solid white",margin:'10px 0 10px 0'}}/>
             <table>
