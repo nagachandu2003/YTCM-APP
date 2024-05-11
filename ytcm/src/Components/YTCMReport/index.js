@@ -597,7 +597,7 @@ class YTCMReport extends Component{
                     <div className="ytmchome-main-inner-container">
                 <div className="ytmchome-top-container">
                     <div className="ytmchome-top-flex-container">
-                    <h1>Channels</h1>
+                    <h2>Channels</h2>
                     {/* <button onClick={this.onClickLogout} type="button" className="logoutBtn">Log Out</button> */}
                     </div>
                 </div>

@@ -47,7 +47,7 @@ const Account = () => {
           <div className="ytmchome-top-flex-container">
             <div style={{display:'flex',alignItems:'center'}}>
                 <Link to="/profile" style={{textDecoration:'none'}}>
-                <FaArrowLeft style={{height:'30px',width:'30px'}}/>
+                <FaArrowLeft className="back-icon"/>
                 </Link>
             <h2>Account</h2>
             </div>

@@ -5,10 +5,26 @@ import { PiPresentationChartBold } from 'react-icons/pi';
 import { FcReadingEbook } from 'react-icons/fc';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Footer from '../YTCMFooter';
+import Cookies from 'js-cookie'
 
 const Reward = () => {
   const [activeTab, setActiveTab] = useState('current');
   const [popupVisible, setPopupVisible] = useState(false);
+
+  const getVideos = async () => {
+    const email = Cookies.get("useremail");
+    try{
+      const response = await fetch(`http://localhost:3001/allvideos/${email}`);
+      if(response.ok)
+        {
+          const data = await response.json()
+          console.log(data);
+        }
+    }
+    catch(Err){
+      console.log(`Error Occurred : ${Err}`);
+    }
+  }
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -42,8 +58,25 @@ const Reward = () => {
         {activeTab === 'current' && (
           <section>
             <h1>Current Rewards</h1>
-            {/* Task items for current tab */}
-            {/* Modify and structure task items here */}
+            <button onClick={getVideos}>Get Videos</button>
+            {/* {isLoading===true && (
+                    <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                        <ThreeDots color="gray" height={50} width={50}/>
+                    </div>
+                )}
+          {isLoading===false && (
+          <div className="ytmchome-content-container">
+            {(videosList===undefined || videosList.length === 0) ? (
+              <p>Please add Videos</p>
+            ) : (
+              <ul className="ytmchome-channel-container">
+                {videosList.map((ele) => (
+                  <YTCMVideoItem key={ele.id} itemDetails={ele} />
+                ))}
+              </ul>
+            )}
+          </div>
+          )} */}
           </section>
         )}
         {activeTab === 'claimed' && (

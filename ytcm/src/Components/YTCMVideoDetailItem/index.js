@@ -2,8 +2,10 @@ import {  useParams } from "react-router-dom"
 import { useState, useEffect } from 'react';
 import { ThreeDots } from "react-loader-spinner"
 import { googleLogout } from "@react-oauth/google"
+import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Footer from '../YTCMFooter'
+import { FaArrowLeft } from "react-icons/fa";
 import "./index.css"
 
 const YTCMVideoDetailItem = () => {
@@ -11,6 +13,8 @@ const YTCMVideoDetailItem = () => {
     console.log(videoid)
     console.log(channelName)
     const [videoName,setVideoName] = useState('');
+    const [videoDate, setVideoDate] = useState('');
+    const [videoTime, setVideoTime] = useState('');
     const [isLoading,setIsLoading] = useState(false)
     const [days, setDays] = useState([]);
     const [dateArray,setDateArray] = useState([]);
@@ -30,11 +34,15 @@ const YTCMVideoDetailItem = () => {
             const response = await fetch(`https://js-member-backend.vercel.app/ytmcvideo/channel/videostats`,options);
             if(response.ok===true){
             const data = await response.json()
+            console.log(data)
             // console.log(data)
             const {days,videoDate,dateArray,VideoName} = data.videoItem
             setDays(days)
             setDateArray(dateArray)
             setVideoName(data.videoItem.videoName)
+            setVideoDate(data.videoItem.videoDate)
+            setVideoTime(data.videoItem.videoTime)
+            // setVideoTime(data.VideoItem.videoTime)
             setIsLoading(false)
             }
             }
@@ -45,6 +53,16 @@ const YTCMVideoDetailItem = () => {
         // Example: getVideos();
         getVideos()
       }, []); // Empty dependency array means it runs only once on mount  }
+
+      const dateObj = new Date(videoDate)
+
+      const day = dateObj.getDate().toString().padStart(2, '0');
+const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Note: Month is zero-indexed, so we add 1
+const year = dateObj.getFullYear().toString().slice(-2); // Extract the last two digits of the year
+
+// Format the date as dd/mm/yy
+const formattedDate = `${day}/${month}/${year}`;
+
 
     
     const onClickLogout = () => {
@@ -62,14 +80,19 @@ const YTCMVideoDetailItem = () => {
           totrewardpoints += values/100
         }
       }
-      console.log(videoName)
+      // console.log(videoName)
 
     return (
         <>
         <div className="ytmchome-main-container">
         <div className="ytmchome-top-container">
           <div className="ytmchome-top-flex-container">
-            <h1>Views</h1>
+          <div style={{display:'flex',alignItems:'center'}}>
+                <Link to={`/video/${channelName}`} style={{textDecoration:'none'}}>
+                <FaArrowLeft className="back-icon"/>
+                </Link>
+            <h2>Views</h2>
+            </div>
             {/* <button onClick={onClickLogout} type="button" className="logoutBtn">
               Log Out
             </button> */}
@@ -82,8 +105,9 @@ const YTCMVideoDetailItem = () => {
                 )}
           {isLoading===false && (
           <div className="ytmchome-content-container">
-            <h3 style={{textAlign:'left'}}>Channel: {channelName}</h3>
-            <h3 style={{textAlign:'left'}}>Video: {videoName}</h3>
+            <h2 style={{textAlign:'left'}}>Channel: {channelName}</h2>
+            <h2 style={{textAlign:'left'}}>Video: {videoName}</h2>
+            <h2 style={{textAlign:'left'}}>Upload Date & Time : {formattedDate} , {videoTime}</h2>
             {/* <h3 style={{textAlign:'left'}}>Views & Reward</h3> */}
             <hr style={{border:"1px solid white",margin:'10px 0 10px 0'}}/>
             <table>

@@ -2,14 +2,15 @@
 body {
     margin: 0;
     font-family: "Open Sans", sans-serif;
-    background-color: white;
-    color: #333;
+    background-color: black;
+    color: black;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background-color: black;
 }
 
 /* Header Styles */
@@ -27,15 +28,15 @@ body {
 .task-main-heading {
     font-size: 26px;
     font-weight: 600;
-    color: #333;
+    color: black;
     margin: 0;
 }
 
 /* Navigation Styles */
 .task-tabs-container {
     display: flex;
-    background-color: #fff;
-    color: #333;
+    background-color: black;
+    color: white;
     overflow-x: auto;
     white-space: nowrap;
     z-index: 1; /* Ensure tabs are above content */
@@ -73,7 +74,8 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     padding: 15px;
-    background-color: #fff;
+    background-color: black;
+    color:white;
     margin-top: 70px; /* Adjust based on header and tabs height */
     overflow-y: auto; /* Allow content to scroll */
     max-height: calc(100vh - 120px); /* Adjust based on header and tabs height */

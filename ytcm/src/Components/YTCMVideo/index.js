@@ -8,6 +8,8 @@ import YTCMVideoItem from '../YTCMVideoItem';
 import { ThreeDots } from 'react-loader-spinner';
 import Footer from '../YTCMFooter'
 import "./index.css"
+import {Link} from 'react-router-dom'
+import { FaArrowLeft } from 'react-icons/fa';
 
 const YTCMVideo = () => {
   const { channelName } = useParams();
@@ -112,6 +114,7 @@ const YTCMVideo = () => {
       dateArray.push(nextDate.toLocaleDateString()); // Push the formatted date into the array
     }
     const obj = { videoUrl, id: uuidv4(),videoId:videoid,videoDate:currentDate.toLocaleDateString(),videoTime:currentDate.toLocaleTimeString(),videoName: title, views: viewCount, channelTitle:channelName, email: Cookies.get('useremail'), days: [viewCount,0,0,0,0,0,0],dateArray };
+    console.log(obj)
     const newObj = [...videosList, obj];
     addVideo(obj);
     // console.log(obj)
@@ -173,7 +176,12 @@ const YTCMVideo = () => {
         </div>
         <div className="ytmchome-top-container">
           <div className="ytmchome-top-flex-container">
-            <h1>Videos</h1>
+          <div style={{display:'flex',alignItems:'center'}}>
+                <Link to="/report" style={{textDecoration:'none'}}>
+                <FaArrowLeft className="back-icon"/>
+                </Link>
+            <h2>Videos</h2>
+            </div>
             {/* <button onClick={onClickLogout} type="button" className="logoutBtn">
               Log Out
             </button> */}
