@@ -53,7 +53,7 @@ const Reward = () => {
   const claimList = videosList.filter((ele) => ele.claim===true)
   let sumo = 0;
   if(claimList.length!==0)
-  sumo = claimList.reduce((acc,item) => acc + item.days.reduce((acc1,item1) => acc1 + (parseInt(item1)/100),0),0)
+  sumo = claimList.reduce((acc,item) => acc + item.days.reduce((acc1,item1) => acc1 + (parseInt(item1)/100),0),0).toFixed(2)
 
 
   // const getVideos = async () => {
