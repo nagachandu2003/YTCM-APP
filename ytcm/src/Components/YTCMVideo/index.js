@@ -114,7 +114,7 @@ const YTCMVideo = () => {
       dateArray.push(nextDate.toLocaleDateString()); // Push the formatted date into the array
     }
     const obj = { videoUrl, id: uuidv4(),videoId:videoid,videoDate:currentDate.toLocaleDateString(),videoTime:currentDate.toLocaleTimeString(),videoName: title, views: viewCount, channelTitle:channelName, email: Cookies.get('useremail'), days: [viewCount,0,0,0,0,0,0],dateArray };
-    console.log(obj)
+    // console.log(obj)
     const newObj = [...videosList, obj];
     addVideo(obj);
     // console.log(obj)

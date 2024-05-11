@@ -1,7 +1,6 @@
-import "./index.css"
 import {Link} from 'react-router-dom'
 
-const YTCMVideoItem = (props) => {
+const RewardItem = (props) => {
     const {itemDetails} = props
     const {videoUrl,videoId,videoName,views,videoDate,channelTitle,videoTime} = itemDetails
     const time = videoTime?videoTime:(new Date().toLocaleTimeString())
@@ -9,16 +8,21 @@ const YTCMVideoItem = (props) => {
     const dateObj = new Date(videoDate)
     const day = dateObj.getDate().toString().padStart(2, '0');
     const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Note: Month is zero-indexed, so we add 1
-    const year = dateObj.getFullYear().toString(); // Extract the last two digits of the year
+    const year = dateObj.getFullYear().toString() // Extract the last two digits of the year
 
 // Format the date as dd/mm/yy
 const formattedDate = `${day}/${month}/${year}`;
 
     return (
         <li className="ytmcchannel-list-item">
+            
             <div className="list-item-cont2">
             <img className="user-img" src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} alt="thumbnail"/>
-            <div style={{width:'80%',display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+            <div style={{width:'80%',display:'flex',flexDirection:'column',alignItems:'flex-end'}}>
+                <div style={{display:'flex'}}>
+                <label id="claim">Claim</label>
+                <input type="checkbox" htmlFor="claim"/>
+                </div>
             <p style={{margin:'0',fontSize:'13px'}}>{time} , {formattedDate}</p>
             <br/>
             {/* <p style={{margin:'0',fontSize:'12px'}}>Time : {time}</p> */}
@@ -35,4 +39,4 @@ const formattedDate = `${day}/${month}/${year}`;
     )
 }
 
-export default YTCMVideoItem
+export default RewardItem

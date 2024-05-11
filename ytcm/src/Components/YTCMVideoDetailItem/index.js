@@ -58,7 +58,7 @@ const YTCMVideoDetailItem = () => {
 
       const day = dateObj.getDate().toString().padStart(2, '0');
 const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Note: Month is zero-indexed, so we add 1
-const year = dateObj.getFullYear().toString().slice(-2); // Extract the last two digits of the year
+const year = dateObj.getFullYear().toString(); // Extract the last two digits of the year
 
 // Format the date as dd/mm/yy
 const formattedDate = `${day}/${month}/${year}`;
@@ -105,9 +105,9 @@ const formattedDate = `${day}/${month}/${year}`;
                 )}
           {isLoading===false && (
           <div className="ytmchome-content-container">
-            <h2 style={{textAlign:'left'}}>Channel: {channelName}</h2>
-            <h2 style={{textAlign:'left'}}>Video: {videoName}</h2>
-            <h2 style={{textAlign:'left'}}>Upload Date & Time : {formattedDate} , {videoTime}</h2>
+            <h2 style={{textAlign:'left'}}>Channel: <span className="span-item">{channelName}</span></h2>
+            <h2 style={{textAlign:'left'}}>Video: <span className="span-item">{videoName}</span></h2>
+            <h2 style={{textAlign:'left'}}>Upload Date & Time : <span className="span-item">{videoTime} , {formattedDate}</span></h2>
             {/* <h3 style={{textAlign:'left'}}>Views & Reward</h3> */}
             <hr style={{border:"1px solid white",margin:'10px 0 10px 0'}}/>
             <table>
