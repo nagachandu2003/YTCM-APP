@@ -134,45 +134,43 @@ const YTCMVideo = () => {
       <div className="ytmchome-main-container">
         <div>
           <Popup
-            trigger={<button className="ytmcreportBtn">New +</button>}
-            modal
-            nested
-          >
-            {(close) => (
-              <div className="modal ytmchome-custom-popup">
-                <div className="content ytmchome-popup">
-                  <form onSubmit={onClickAddChannel}>
-                    <div>
-                      <label htmlFor="videoUrl">Video URL</label>
-                      <br />
-                      <input
-                        placeholder="Enter the Video Url"
-                        onChange={(e) => setVideoUrl(e.target.value)}
-                        className="ytmchome-user-input"
-                        type="url"
-                        id="videoUrl"
-                        required
-                      />
+                        trigger={<button className="ytmcreportBtn">New +</button>}
+                        modal
+                        nested
+                    >
+                        {close => (
+                    <div className="modal modal1 ytmchome-custom-popup1">
+                    <div className="content ytmchome-popup-cont2">
+                        <form onSubmit={onClickAddChannel}>
+                            <div>
+                                <label htmlFor="channelurl">Add Video Link</label>
+                                <br/>
+                                <input
+                                    placeholder="Enter the Channel Url"
+                                    onChange={(e) => setVideoUrl(e.target.value)}
+                                    className="ytmchome-user-input1"
+                                    type="url"
+                                    id="channelurl"
+                                    required
+                                />
+                            </div>
+                            <div className="actions actions1">
+                                <button
+                                    className="button closeBtn1"
+                                    onClick={() => {
+                                        console.log('modal closed ');
+                                        close();
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                                <button className="fetchBtn1" type="submit">Add</button>
+                            </div>
+                        </form>
                     </div>
-                    <div className="actions">
-                      <button
-                        className="button closeBtn"
-                        onClick={() => {
-                          console.log('modal closed');
-                          close();
-                        }}
-                      >
-                        Cancel
-                      </button>
-                      <button className="fetchBtn" type="submit">
-                        Add Video
-                      </button>
-                    </div>
-                  </form>
                 </div>
-              </div>
-            )}
-          </Popup>
+                        )}
+                    </Popup>
         </div>
         <div className="ytmchome-top-container">
           <div className="ytmchome-top-flex-container">

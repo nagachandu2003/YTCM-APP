@@ -147,7 +147,8 @@ body {
   .ytmchome-user-input1 {
     width: 100%;
     padding: 8px;
-    margin-bottom: 15px;
+    margin-top:5px;
+    margin-bottom:5px;
   }
   
   .actions1 {
@@ -293,8 +294,8 @@ body {
     right:50%;
 }
 */
-.ytmchome-custom-popup{
-    background-color:#ECCA3D;
+.ytmchome-custom-popup1{
+    background-color:#FAFA05;
     border:1px solid black;
     border-radius:8px;
     padding:10px;
@@ -302,7 +303,7 @@ body {
 }
 .ytmchome-popup-cont2{
     max-height:400px;
-    overflow-y:scroll;
+    overflow-y:hidden;
     overflow-x:hidden;
     padding:10px;
 }

@@ -561,16 +561,15 @@ class YTCMReport extends Component{
                     >
                         {close => (
                     <div className="modal modal1 ytmchome-custom-popup1">
-                    <div className="header popup-cont1"> Add Link </div>
                     <div className="content ytmchome-popup-cont2">
                         <form onSubmit={this.onSubmitUrl}>
                             <div>
-                                <label htmlFor="channelurl">Channel URL</label>
+                                <label htmlFor="channelurl">Add Channel Link</label>
                                 <br/>
                                 <input
                                     placeholder="Enter the Channel Url"
                                     onChange={this.onChangeChannelUrl}
-                                    className="ytmchome-user-input"
+                                    className="ytmchome-user-input1"
                                     type="url"
                                     id="channelurl"
                                     required
@@ -586,7 +585,7 @@ class YTCMReport extends Component{
                                 >
                                     Cancel
                                 </button>
-                                <button className="fetchBtn1" onClick={this.onClickAddChannel} type="submit">Add Channel</button>
+                                <button className="fetchBtn1" onClick={this.onClickAddChannel} type="submit">Add</button>
                             </div>
                         </form>
                     </div>
