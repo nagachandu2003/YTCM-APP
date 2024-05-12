@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.css';
 import { FaRegFileAlt } from 'react-icons/fa';
 import { PiPresentationChartBold } from 'react-icons/pi';
@@ -6,25 +6,39 @@ import { FcReadingEbook } from 'react-icons/fc';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Footer from '../YTCMFooter';
 import Cookies from 'js-cookie'
+import ContentItem from '../ContentItem'
+import { ThreeDots } from 'react-loader-spinner';
 
 const Content = () => {
   const [activeTab, setActiveTab] = useState('suggested');
   const [popupVisible, setPopupVisible] = useState(false);
+  const [videosList, setVideosList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getVideos = async () => {
-    const email = Cookies.get("useremail");
-    try{
-      const response = await fetch(`http://localhost:3001/allvideos/${email}`);
-      if(response.ok)
-        {
-          const data = await response.json()
-          console.log(data);
-        }
-    }
-    catch(Err){
-      console.log(`Error Occurred : ${Err}`);
-    }
-  }
+
+  useEffect(() => {
+    const getVideos = async () => {
+      setIsLoading(true)
+      try{
+        const response = await fetch(`https://js-member-backend.vercel.app/getcontentdetails`);
+        if(response.ok)
+          {
+            const data = await response.json()
+            setVideosList(data.Content)
+            setIsLoading(false)
+            console.log(data);
+          }
+      }
+      catch(Err){
+        console.log(`Error Occurred : ${Err}`);
+      }
+    };
+
+    // Call getVideos only once on mount
+    getVideos();
+  }, []); // Empty dependency array means it runs only once on mount
+
+
 
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
@@ -33,6 +47,7 @@ const Content = () => {
   const handleTaskClick = () => {
     setPopupVisible(!popupVisible);
   };
+  console.log(videosList)
 
   return (
     <>
@@ -57,9 +72,7 @@ const Content = () => {
       <main className="task-content-container">
         {activeTab === 'suggested' && (
           <section>
-            <h1>suggested Rewards</h1>
-            <button onClick={getVideos}>Get Videos</button>
-            {/* {isLoading===true && (
+            {isLoading===true && (
                     <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>
                     </div>
@@ -71,12 +84,12 @@ const Content = () => {
             ) : (
               <ul className="ytmchome-channel-container">
                 {videosList.map((ele) => (
-                  <YTCMVideoItem key={ele.id} itemDetails={ele} />
+                  <ContentItem key={ele.id} itemDetails={ele} />
                 ))}
               </ul>
             )}
           </div>
-          )} */}
+          )}
           </section>
         )}
         {activeTab === 'trending' && (
