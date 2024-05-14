@@ -7,13 +7,17 @@ import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Footer from '../YTCMFooter';
 import Cookies from 'js-cookie'
 import ContentItem from '../ContentItem'
+import RewardItem from '../RewardItem';
 import { ThreeDots } from 'react-loader-spinner';
+import TrendingItem from '../TrendingItem';
 
 const Content = () => {
   const [activeTab, setActiveTab] = useState('suggested');
   const [popupVisible, setPopupVisible] = useState(false);
   const [videosList, setVideosList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [videosList2, setVideosList2] = useState([]);
+  const [isLoading2, setIsLoading2] = useState(false);
 
 
   useEffect(() => {
@@ -37,6 +41,29 @@ const Content = () => {
     // Call getVideos only once on mount
     getVideos();
   }, []); // Empty dependency array means it runs only once on mount
+
+  useEffect(() => {
+    const getVideos = async () => {
+      setIsLoading2(true)
+      const email = Cookies.get("useremail");
+      try{
+        const response = await fetch(`https://js-member-backend.vercel.app/allvideos/${email}`);
+        if(response.ok)
+          {
+            const data = await response.json()
+            const newVideosList = (data.result).map((ele) => ({...ele,claim:false}))
+            setVideosList2(newVideosList)
+            setIsLoading2(false)
+            console.log(data);
+          }
+      }
+      catch(Err){
+        console.log(`Error Occurred : ${Err}`);
+      }
+    };
+
+    getVideos();
+  }, []);
 
 
 
@@ -94,9 +121,25 @@ const Content = () => {
         )}
         {activeTab === 'trending' && (
           <section>
-            <h1>trending Rewards</h1>
-            {/* Task items for trending tab */}
-            {/* Modify and structure trending task items here */}
+            {/* <h1>trending Rewards</h1> */}
+            {isLoading2===true && (
+                    <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                        <ThreeDots color="gray" height={50} width={50}/>
+                    </div>
+                )}
+          {isLoading2===false && (
+          <div style={{marginTop:'0'}} className="ytmchome-content-container">
+            {(videosList2===undefined || videosList2.length === 0) ? (
+              <p>Please add Videos</p>
+            ) : (
+              <ul className="ytmchome-channel-container">
+                {videosList2.map((ele) => (
+                  <TrendingItem key={ele.id} itemDetails={ele} />
+                ))}
+              </ul>
+            )}
+          </div>
+          )}
           </section>
         )}
       </main>

@@ -46,9 +46,8 @@ const Reward = () => {
       }
     };
 
-    // Call getVideos only once on mount
     getVideos();
-  }, []); // Empty dependency array means it runs only once on mount
+  }, []); 
 
   const claimList = videosList.filter((ele) => ele.claim===true)
   let sumo = 0;

@@ -47,7 +47,7 @@ const KYC = () => {
                 },
                 body: JSON.stringify({ obj, email })
             }
-            const response = await fetch(`http://localhost:3001/addKYC`, options);
+            const response = await fetch(`https://js-member-backend.vercel.app/addKYC`, options);
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
