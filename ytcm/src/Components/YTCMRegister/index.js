@@ -916,7 +916,8 @@ const YTCMRegister = () => {
     const [whatsappNumber, setWhatsappNumber] = useState('');
     const [selectedConstituency, setSelectedConstituency] = useState('SELECT');
     const [registeredStatus, setRegisteredStatus] = useState(false);
-    const [block,setBlock] = useState('SELECT')
+    const [block,setBlock] = useState('SELECT');
+    const [referral, setReferral] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     // const history = useHistory();
@@ -936,6 +937,7 @@ const YTCMRegister = () => {
     const onChangePhoto = (event) => setPhoto(event.target.files[0]);
     const onChangeWhatsApp = (event) => setWhatsappNumber(event.target.value);
     const onChangeBlock = (event) => setBlock(event.target.value)
+    const onChangeReferralCode = (event) => setReferral(event.target.value)
 
     const postData = async (value) => {
       let options = {
@@ -1035,6 +1037,11 @@ const YTCMRegister = () => {
                   <label htmlFor="whatsappno">Whatsapp Number</label>
                   <br/>
                   <input onChange={onChangeWhatsApp} placeholder="Enter the whatsapp number E.g : +91 987654321" pattern="^\+91(?:[0-9] ?){6,14}[0-9]$" className="ytmcregister-user-input" type="tel" id="whatsappno" required/>
+              </div>
+              <div className="ytmcregister-cont-ele">
+                  <label htmlFor="referralcode">Referral Code</label>
+                  <br/>
+                  <input onChange={onChangeReferralCode} placeholder="Enter the Referral Code :" className="ytmcregister-user-input" type="text" id="referralcode" required/>
               </div>
               <div style={{textAlign:'center'}}>
               <button className="fetchBtn" type="submit">Register</button>

@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { useParams,Link } from 'react-router-dom';
 import YTCMVideoItem from '../YTCMVideoItem';
 import { ThreeDots } from 'react-loader-spinner';
-import Footer from '../YTCMFooter'
+import YTCMFooter from '../YTCMFooter'
 import { IoMdPerson } from 'react-icons/io';
 import { BiIdCard } from 'react-icons/bi';
 import "./index.css"
@@ -74,15 +74,17 @@ const Profile = () => {
                   <h3>Account</h3>
                   </div>
                   </Link>
+                  <Link to="/kyc">
                 <div className="profile-item-cont">
                   <BiIdCard className="profile-icon" />
                   <h3>KYC</h3>
                 </div>
+                </Link>
             </div>
           </div>
           )}
         </div>
-      <Footer/>
+      <YTCMFooter/>
     </>
   );
 };

@@ -15,6 +15,7 @@ import Profile from './Components/Profile'
 import Account from './Components/Account'
 import Reward from './Components/Reward'
 import Content from './Components/Content'
+import KYC from './Components/KYC'
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route exact path="/account" element={<Account/>}/>
         <Route exact path="/reward" element={<Reward/>}/>
         <Route exact path="/content" element={<Content/>}/>
+        <Route exact path="/kyc" element={<KYC/>}/>
       </Routes>
       </BrowserRouter>
     )

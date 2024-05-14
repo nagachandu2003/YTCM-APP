@@ -37,8 +37,10 @@ body{
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid gray;
     border-radius: 5px;
+    margin-top:5px;
+    margin-bottom:5px;
   }
 
   .ytmcregister-cont-ele label{
@@ -53,7 +55,7 @@ body{
   .fetchBtn{
         background-color: green;
         color:white;
-        padding:5px;
+        padding:8px;
         border-width:0px;
         border-radius:3px;
         margin-left:10px;
