@@ -45,14 +45,12 @@ const Content = () => {
   useEffect(() => {
     const getVideos = async () => {
       setIsLoading2(true)
-      const email = Cookies.get("useremail");
       try{
-        const response = await fetch(`https://js-member-backend.vercel.app/allvideos/${email}`);
+        const response = await fetch(`https://js-member-backend.vercel.app/gettrendingdetails`);
         if(response.ok)
           {
             const data = await response.json()
-            const newVideosList = (data.result).map((ele) => ({...ele,claim:false}))
-            setVideosList2(newVideosList)
+            setVideosList2(data.Trending)
             setIsLoading2(false)
             console.log(data);
           }
@@ -62,8 +60,10 @@ const Content = () => {
       }
     };
 
+    // Call getVideos only once on mount
     getVideos();
-  }, []);
+  }, []); // Empty dependency array means it runs only once on mount
+
 
 
 
@@ -105,7 +105,7 @@ const Content = () => {
                     </div>
                 )}
           {isLoading===false && (
-          <div className="ytmchome-content-container">
+          <div style={{marginTop:'0'}} className="ytmchome-content-container">
             {(videosList===undefined || videosList.length === 0) ? (
               <p>Please add Videos</p>
             ) : (
@@ -121,7 +121,6 @@ const Content = () => {
         )}
         {activeTab === 'trending' && (
           <section>
-            {/* <h1>trending Rewards</h1> */}
             {isLoading2===true && (
                     <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>
