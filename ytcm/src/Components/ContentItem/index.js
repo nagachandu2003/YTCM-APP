@@ -1,4 +1,6 @@
 import {Link} from 'react-router-dom'
+import { FaYoutube } from 'react-icons/fa'
+import { FaTelegramPlane } from 'react-icons/fa'
 
 const ContentItem = (props) => {
     const {itemDetails,onCheckReward} = props
@@ -14,7 +16,13 @@ const ContentItem = (props) => {
             <br/>
             {/* <p style={{margin:'0',fontSize:'12px'}}>Time : {time}</p> */}
             {/* <div className="ytmcchannel-link-btn" style={{display:'flex',alignItems:'center'}}> */}
-            <button type="button" className="view-Btn">Download</button>
+            <div style={{display:'flex',alignItems:'center',marginBottom:'5px'}}>
+            <FaYoutube size={30} style={{backgroundColor:'red',color:'white',borderRadius:'8px',padding:'5px'}}/>
+            <FaTelegramPlane size={30} style={{backgroundColor:'skyblue',marginLeft:'5px',color:'white',borderRadius:'8px',padding:'5px'}}/>
+                </div>
+            <button type="button" className="view-Btn">
+                Download
+                </button>
             {/* </div> */}
             </div>
             </div>
