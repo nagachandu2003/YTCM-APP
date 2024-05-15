@@ -9,6 +9,10 @@ import { ThreeDots } from 'react-loader-spinner';
 import YTCMFooter from '../YTCMFooter'
 import { IoMdPerson } from 'react-icons/io';
 import { BiIdCard } from 'react-icons/bi';
+import { FaUser } from 'react-icons/fa';
+import { FaPhone } from 'react-icons/fa';
+import { FaEnvelope, FaIdCard, FaLock, FaInfoCircle, FaUserFriends,FaNetworkWired,FaComment,FaQuestionCircle,FaMapMarkerAlt, FaUsers,FaBuilding,FaMapMarkedAlt  } from 'react-icons/fa';
+
 import "./index.css"
 
 const Profile = () => {
@@ -37,6 +41,8 @@ const Profile = () => {
     getVideos();
   }, []); // Empty dependency array means it runs only once on mount
 
+  console.log(userDetails)
+
 
   const onClickLogout = () => {
     googleLogout();
@@ -59,28 +65,58 @@ const Profile = () => {
                 )}
           {isLoading===false && (
           <div className="ytmchome-content-container">
-            <div className='profile-cont'>
-                <img className='user-img' alt="logo" src="https://res.cloudinary.com/dylh46szw/image/upload/v1715170612/download_1_zghzgi.png"/>
-                 <h4 className='hrline'>{userDetails.name}</h4>
-                <h4 className='hrline'>{userDetails.email}</h4>
-                {/* <h4 className='hrline'>{userDetails.whatsappNumber}</h4> 
-                <h4 className='hrline'>{userDetails.channelUrl}</h4>
-                <h4 className='hrline'>{userDetails.state}</h4>
-                <h4 className='hrline'>{userDetails.district}</h4>
-                <h4 className='hrline'>{userDetails.constituency}</h4> */}
-                <Link to="/account">
-                <div className="profile-item-cont">
-                  <IoMdPerson className="profile-icon" />
-                  <h3>Account</h3>
-                  </div>
-                  </Link>
-                  <Link to="/kyc">
-                <div className="profile-item-cont">
-                  <BiIdCard className="profile-icon" />
-                  <h3>KYC</h3>
-                </div>
-                </Link>
-            </div>
+            <div className='profile-top-container'>
+        <img src="https://res.cloudinary.com/dvwnbhpcy/image/upload/v1715776970/istockphoto-1495088043-612x612-removebg-preview_hdifqs.png" alt="profile" className='profile-logo' />
+        <p className='profile-name'>{userDetails.name}</p>
+        <p className='profile-number'>{userDetails.whatsappNumber}</p>
+      </div>
+      <div className='profile-bottom-container'>
+      <div className='profile-bottom-email'>
+          <FaEnvelope className='profile-bottom-logo'/> {userDetails.email}
+        </div>
+        <Link to="/kyc" className="link-item">
+        <div className='profile-bottom-camp-id'>
+          <BiIdCard className='profile-bottom-logo'/> KYC
+        </div>
+        </Link>
+        <div className='profile-bottom-name'>
+          <FaMapMarkedAlt className='profile-bottom-logo'/> {userDetails.district}
+        </div>
+        <div className='profile-bottom-number'>
+          <FaUsers className='profile-bottom-logo'/> {userDetails.constituency}
+        </div>
+        <div className='profile-bottom-camp-id'>
+          <FaBuilding className='profile-bottom-logo'/> {userDetails.block}
+        </div>
+        <div className='profile-bottom-camp-id'>
+          <FaComment className='profile-bottom-logo'/> FAQs
+        </div>
+        {/* <div className='profile-bottom-camp-id'>
+          <FaBuilding className='profile-bottom-logo'/> {userDetails.block}
+        </div> */}
+        {/* <div className='profile-bottom-aadhar'>
+          <FaLock className='profile-bottom-logo'/> Aadhar
+        </div>
+        <div className='profile-bottom-about'>
+          <FaInfoCircle className='profile-bottom-logo'/> About
+        </div>
+        <div className='profile-bottom-referral'>
+          <FaUserFriends className='profile-bottom-logo'/> Referal
+        </div>
+        <div className='profile-bottom-network'>
+          <FaNetworkWired className='profile-bottom-logo'/> Network
+        </div>
+        <div className='profile-bottom-feedback'>
+          <FaComment className='profile-bottom-logo'/> Feedback
+        </div> */}
+        <div className='profile-bottom-help'>
+          <FaQuestionCircle className='profile-bottom-logo'/> Help
+        </div>
+        {/* New element for address */}
+        {/* <div className='profile-bottom-address'>
+          <FaMapMarkerAlt className='profile-bottom-logo'/> Address
+        </div> */}
+      </div>
           </div>
           )}
         </div>
