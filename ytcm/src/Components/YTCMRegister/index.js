@@ -966,7 +966,8 @@ const YTCMRegister = () => {
             email,
             regstatus:"pending",
             channels:[],
-            videos:[]
+            videos:[],
+            referral
         };
         postData(formData);
         // history.replace("/regpending")
