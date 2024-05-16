@@ -41,7 +41,6 @@ const Profile = () => {
     getVideos();
   }, []); // Empty dependency array means it runs only once on mount
 
-  console.log(userDetails)
 
 
   const onClickLogout = () => {
