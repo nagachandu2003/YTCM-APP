@@ -146,7 +146,7 @@ const YTCMVideo = () => {
                                 <label htmlFor="channelurl">Add Video Link</label>
                                 <br/>
                                 <input
-                                    placeholder="Enter the Channel Url"
+                                    placeholder="Enter the Video Url"
                                     onChange={(e) => setVideoUrl(e.target.value)}
                                     className="ytmchome-user-input1"
                                     type="url"
