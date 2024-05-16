@@ -96,7 +96,7 @@ const Content = () => {
         </div>
         <div className="task-tab-slider" style={{ left: activeTab === 'trending' ? '50%' : '0' }} />
       </nav>
-      <main className="task-content-container">
+      <main style={{marginTop:'70px'}}>
         {activeTab === 'suggested' && (
           <section>
             {isLoading===true && (

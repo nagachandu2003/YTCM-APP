@@ -18,7 +18,7 @@ const ContentItem = (props) => {
             {/* <div className="ytmcchannel-link-btn" style={{display:'flex',alignItems:'center'}}> */}
             <div style={{display:'flex',alignItems:'center',marginBottom:'5px'}}>
             <FaYoutube size={30} style={{backgroundColor:'red',color:'white',borderRadius:'8px',padding:'5px'}}/>
-            <FaTelegramPlane size={30} style={{backgroundColor:'skyblue',marginLeft:'5px',color:'white',borderRadius:'8px',padding:'5px'}}/>
+            {/* <FaTelegramPlane size={30} style={{backgroundColor:'skyblue',marginLeft:'5px',color:'white',borderRadius:'8px',padding:'5px'}}/> */}
                 </div>
             <button type="button" className="view-Btn">
                 Download
