@@ -534,9 +534,10 @@ class YTCMReport extends Component{
     onClickAddChannel = (event) => {
       event.preventDefault()
       const {channelUrl,channelsList} = this.state
-
-      const newObj = [...channelsList,{channelUrl,id:uuidv4(),channelName : this.getChannelName(channelUrl),videos:[],channelDate:(new Date()).toLocaleDateString()}]
-      this.onReplaceObj({channelUrl,id:uuidv4(),channelName : this.getChannelName(channelUrl),videos:[]})
+      const currDate = (new Date()).toLocaleDateString('en-GB')
+      const currTime = (new Date()).toLocaleTimeString()
+      const newObj = [...channelsList,{channelUrl,id:uuidv4(),channelName : this.getChannelName(channelUrl),videos:[],channelDate:currDate,channelTime:currTime}]
+      this.onReplaceObj({channelUrl,id:uuidv4(),channelName : this.getChannelName(channelUrl),videos:[],channelDate:currDate,channelTime:currTime})
       this.setState({channelsList:newObj})
     }
 
