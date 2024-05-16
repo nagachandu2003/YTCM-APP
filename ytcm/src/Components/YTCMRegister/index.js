@@ -918,6 +918,7 @@ const YTCMRegister = () => {
     const [registeredStatus, setRegisteredStatus] = useState(false);
     const [block,setBlock] = useState('SELECT');
     const [referral, setReferral] = useState('');
+    const [jsid, setJSID] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     // const history = useHistory();
@@ -938,6 +939,7 @@ const YTCMRegister = () => {
     const onChangeWhatsApp = (event) => setWhatsappNumber(event.target.value);
     const onChangeBlock = (event) => setBlock(event.target.value)
     const onChangeReferralCode = (event) => setReferral(event.target.value)
+    const onChangeJSID = (event) => setJSID(event.target.value)
 
     const postData = async (value) => {
       let options = {
@@ -967,7 +969,8 @@ const YTCMRegister = () => {
             regstatus:"pending",
             channels:[],
             videos:[],
-            referral
+            referral,
+            jsid
         };
         postData(formData);
         // history.replace("/regpending")
@@ -989,6 +992,11 @@ const YTCMRegister = () => {
           </div>
           <div className="ytmcregister-form-container">
           <form onSubmit={onSubmitRegisterYTMC}>
+              <div className="ytmcregister-cont-ele">
+                  <label htmlFor="jsid">JSID</label>
+                  <br/>
+                  <input placeholder="Enter the JSID" onChange={onChangeJSID} className="ytmcregister-user-input" type="text" id="jsid" required/>
+                </div>
               <div className="ytmcregister-cont-ele">
               <label htmlFor="username">Username</label>
               <br/>
