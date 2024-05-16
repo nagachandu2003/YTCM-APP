@@ -3,7 +3,7 @@ import { googleLogout } from '@react-oauth/google';
 import { Popup } from 'reactjs-popup';
 import { v4 as uuidv4 } from 'uuid';
 import Cookies from 'js-cookie';
-import { useParams,Link } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import YTCMVideoItem from '../YTCMVideoItem';
 import { ThreeDots } from 'react-loader-spinner';
 import YTCMFooter from '../YTCMFooter'
@@ -18,7 +18,7 @@ import "./index.css"
 const Profile = () => {
   const [userDetails,setUserDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getVideos = async () => {
@@ -47,7 +47,7 @@ const Profile = () => {
   const onClickLogout = () => {
     googleLogout();
     console.log('Logged out successfully');
-    window.location.href = '/ytmclogin';
+    navigate("/",{replace:true})
   };
 
   return (
@@ -112,6 +112,9 @@ const Profile = () => {
         <div className='profile-bottom-help'>
           <FaQuestionCircle className='profile-bottom-logo'/> Help
         </div>
+        <div style={{margin:'auto'}}>
+          <button className="logoutBtn" onClick={onClickLogout}>Log Out</button>
+          </div>
         {/* New element for address */}
         {/* <div className='profile-bottom-address'>
           <FaMapMarkerAlt className='profile-bottom-logo'/> Address

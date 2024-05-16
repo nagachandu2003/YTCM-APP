@@ -86,3 +86,12 @@
     text-decoration: none;
     color:white;
   }
+
+  .logoutBtn{
+    background-color:red;
+    padding:10px;
+    color:white;
+    border-width:0px;
+    border-radius:8px;
+    font-weight:bold;
+  }

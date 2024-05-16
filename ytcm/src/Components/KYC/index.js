@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import "./index.css"
 import Cookies from 'js-cookie'
 import YTCMFooter from '../YTCMFooter';
+import { ThreeDots } from 'react-loader-spinner';
 
 const KYC = () => {
     const [name, setName] = useState('');
@@ -15,6 +16,8 @@ const KYC = () => {
     const [aadharNumber, setAadharNumber] = useState('');
     const [aadharPhoto, setAadharPhoto] = useState(null);
     const [aadharPhotoBase64, setAadhaarPhotoBase64] = useState('');
+    const [isLoading, setIsLoading] = useState('false')
+    const [userDetails,setUserDetails] = useState('')
 
     const navigate = useNavigate();
 
@@ -36,6 +39,30 @@ const KYC = () => {
         };
         reader.readAsDataURL(file);
     }
+
+    useEffect(() => {
+        const getVideos = async () => {
+          setIsLoading(true)
+          const email = Cookies.get("useremail");
+          try {
+            const response = await fetch(`https://js-member-backend.vercel.app/users`);
+            const data = await response.json();
+            const newUser = data.filter((ele) => ele.email===email && ["approved","pending","rejected"].includes(ele.kycstatus))[0]
+            setUserDetails(newUser)
+            setIsLoading(false)
+            // Update videosList state with the fetched data
+            // setVideosList(data.videos); // Assuming the response structure has a 'videos' property
+          } catch (error) {
+            console.error("Error fetching videos:", error);
+          }
+        };
+    
+        // Call getVideos only once on mount
+        getVideos();
+      }, []);
+
+      console.log(userDetails);
+
 
     const postKYC = async (obj) => {
         const email = Cookies.get("useremail");
@@ -93,7 +120,15 @@ const KYC = () => {
                         <h2>KYC</h2>
                     </div>
                 </div>
-                <div style={{ marginTop: '80px', overflowY: 'auto', paddingBottom: '100px' }} className="ytmcregister-form-container">
+                {isLoading===true && (
+                        <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
+                                <ThreeDots color="gray" height={50} width={50}/>
+                        </div>
+                )}
+                {isLoading===false && (
+                    <>
+                    {Object.keys(userDetails)===0 && (                    
+                        <div style={{ marginTop: '80px', overflowY: 'auto', paddingBottom: '100px' }} className="ytmcregister-form-container">
                     <form onSubmit={onSubmitRegisterYTMC}>
                         <div className="ytmcregister-cont-ele">
                             <label htmlFor="username">Name</label>
@@ -134,8 +169,28 @@ const KYC = () => {
                             <button className="fetchBtn" type="submit">Submit</button>
                         </div>
                     </form>
+                    </div>
+                    )}
+                    {userDetails && Object.keys(userDetails)!==0 && (
+                        <>
+                        <div style={{ marginTop: '80px', overflowY: 'auto', paddingBottom: '100px' }} class="kyccontainer">
+                        <ul>
+                        <li><span>Name:</span> {(userDetails.kyc).name}</li>
+                        <li><span>Email:</span> {userDetails.email}</li>
+                        <li><span>Bank:</span> {(userDetails.kyc).bankName}</li>
+                        <li><span>Account No:</span> {(userDetails.kyc).accountNumber}</li>
+                        <li><span>IFSC Code:</span> {(userDetails.kyc).ifscCode}</li>
+                        <li><span>City:</span> {(userDetails.kyc).city}</li>
+                        <li><span>Aadhar No:</span> {(userDetails.kyc).aadharNumber}</li>
+                        <li><span>Status:</span> {userDetails.kycstatus}</li>
+                        </ul>
+                    </div>
+                        </>
+                    )}
+                    </>
+                )}
                     {/* {aadharPhotoBase64!==null && (<img src={`data:image/jpeg;base64,${aadharPhotoBase64}`} height="200" width="200" alt="image"/>)} */}
-                </div>
+
             </div>
             <div style={{ position: 'fixed', bottom: '0', width: '100%', zIndex: '100' }}>
                 <YTCMFooter />
