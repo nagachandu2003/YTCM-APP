@@ -970,7 +970,8 @@ const YTCMRegister = () => {
             channels:[],
             videos:[],
             referral,
-            jsid
+            jsid,
+            kycstatus:'pending'
         };
         postData(formData);
         // history.replace("/regpending")

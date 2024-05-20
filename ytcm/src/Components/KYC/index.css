@@ -28,3 +28,6 @@
   .kyccontainer ul li span {
     font-weight: bold;
   }
+  span{
+    text-wrap: wrap;
+  }
