@@ -6,6 +6,7 @@ import "./index.css"
 import Cookies from 'js-cookie'
 import YTCMFooter from '../YTCMFooter';
 import { ThreeDots } from 'react-loader-spinner';
+import {Popup} from 'reactjs-popup'
 
 const KYC = () => {
     const [name, setName] = useState('');
@@ -48,7 +49,9 @@ const KYC = () => {
             const response = await fetch(`https://js-member-backend.vercel.app/users`);
             const data = await response.json();
             const newUser = data.filter((ele) => ele.email===email && ["approved","pending","rejected"].includes(ele.kycstatus))[0]
+            if(newUser)
             setUserDetails(newUser)
+            
             setIsLoading(false)
             // Update videosList state with the fetched data
             // setVideosList(data.videos); // Assuming the response structure has a 'videos' property
@@ -61,7 +64,26 @@ const KYC = () => {
         getVideos();
       }, []);
 
-      console.log(userDetails);
+      const onDeleteKYC = async () => {
+        const options = {
+            method : "DELETE",
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({email:userDetails.email})
+        }
+        console.log("I am called")
+        const response = await fetch('http://localhost:3001/deletekyc',options)
+        if(response.ok)
+            {
+                const data = await response.json()
+                console.log(data);
+            }
+        else
+        console.log("Error Occurred while updating the kyc")
+    }
+
+    // console.log(userDetails)
 
 
     const postKYC = async (obj) => {
@@ -127,7 +149,7 @@ const KYC = () => {
                 )}
                 {isLoading===false && (
                     <>
-                    {Object.keys(userDetails)===0 && (                    
+                    {(!userDetails.kyc ||Object.keys(userDetails)===0) && (                    
                         <div style={{ marginTop: '80px', overflowY: 'auto', paddingBottom: '100px' }} className="ytmcregister-form-container">
                     <form onSubmit={onSubmitRegisterYTMC}>
                         <div className="ytmcregister-cont-ele">
@@ -171,9 +193,9 @@ const KYC = () => {
                     </form>
                     </div>
                     )}
-                    {userDetails && Object.keys(userDetails)!==0 && (
+                    {userDetails.kyc && Object.keys(userDetails)!==0 && (
                         <>
-                        <div style={{ marginTop: '80px', overflowY: 'auto', paddingBottom: '100px' }} class="kyccontainer">
+                        <div style={{ marginTop: '80px', overflowY: 'auto', paddingBottom: '100px' }} className="kyccontainer">
                         <ul>
                         <li><span>Name:</span> {(userDetails.kyc).name}</li>
                         <li><span>Email:</span> {userDetails.email}</li>
@@ -184,6 +206,35 @@ const KYC = () => {
                         <li><span>Aadhar No:</span> {(userDetails.kyc).aadharNumber}</li>
                         <li><span>Status:</span> {userDetails.kycstatus}</li>
                         </ul>
+                        <div style={{textAlign:'center'}}>
+                        <Popup
+              trigger={<button className="logoutBtn" >Delete KYC</button>}
+                        modal
+                        nested
+                    >
+                        {close => (
+                    <div className="modal modal1 ytmchome-custom-popup1">
+                    <div className="content ytmchome-popup-cont2">
+                        <form>
+                          <h4>Are you sure want to delete KYC?</h4>
+                            <div className="actions actions1">
+                                <button
+                                    className="button closeBtn1"
+                                    onClick={() => {
+                                        console.log('modal closed ');
+                                        close();
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                                <button onClick={onDeleteKYC} style={{backgroundColor:'#2379F7'}} className="fetchBtn1" type="submit">Delete KYC</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                        )}
+                    </Popup>
+                    </div>
                     </div>
                         </>
                     )}
