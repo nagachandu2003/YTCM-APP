@@ -79,40 +79,48 @@ const Profile = () => {
         </div>
         </Link>
         <div className='profile-bottom-name'>
-          <FaMapMarkedAlt className='profile-bottom-logo'/> {userDetails.district}
+          <FaMapMarkedAlt className='profile-bottom-logo'/> District : {userDetails.district}
         </div>
         <div className='profile-bottom-number'>
-          <FaUsers className='profile-bottom-logo'/> {userDetails.constituency}
+          <FaUsers className='profile-bottom-logo'/> Constituency : {userDetails.constituency}
         </div>
         <div className='profile-bottom-camp-id'>
-          <FaBuilding className='profile-bottom-logo'/> {userDetails.block}
+          <FaBuilding className='profile-bottom-logo'/> Block : {userDetails.block}
         </div>
         <div className='profile-bottom-camp-id'>
           <FaComment className='profile-bottom-logo'/> FAQs
         </div>
-        {/* <div className='profile-bottom-camp-id'>
-          <FaBuilding className='profile-bottom-logo'/> {userDetails.block}
-        </div> */}
-        {/* <div className='profile-bottom-aadhar'>
-          <FaLock className='profile-bottom-logo'/> Aadhar
-        </div>
-        <div className='profile-bottom-about'>
-          <FaInfoCircle className='profile-bottom-logo'/> About
-        </div>
-        <div className='profile-bottom-referral'>
-          <FaUserFriends className='profile-bottom-logo'/> Referal
-        </div>
-        <div className='profile-bottom-network'>
-          <FaNetworkWired className='profile-bottom-logo'/> Network
-        </div>
-        <div className='profile-bottom-feedback'>
-          <FaComment className='profile-bottom-logo'/> Feedback
-        </div> */}
         <div className='profile-bottom-help'>
           <FaQuestionCircle className='profile-bottom-logo'/> Help
         </div>
         <div style={{margin:'auto'}}>
-          <button className="logoutBtn" onClick={onClickLogout}>Log Out</button>
+          <Popup
+              trigger={<button className="logoutBtn" >Log Out</button>}
+                        modal
+                        nested
+                    >
+                        {close => (
+                    <div className="modal modal1 ytmchome-custom-popup1">
+                    <div className="content ytmchome-popup-cont2">
+                        <form>
+                          <h4>Are you sure want to log out?</h4>
+                            <div className="actions actions1">
+                                <button
+                                    className="button closeBtn1"
+                                    onClick={() => {
+                                        console.log('modal closed ');
+                                        close();
+                                    }}
+                                >
+                                    Cancel
+                                </button>
+                                <button onClick={onClickLogout} style={{backgroundColor:'#2379F7'}} className="fetchBtn1" type="submit">Log Out</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                        )}
+                    </Popup>
           </div>
         {/* New element for address */}
         {/* <div className='profile-bottom-address'>

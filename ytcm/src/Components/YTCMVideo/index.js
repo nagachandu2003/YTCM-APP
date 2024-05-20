@@ -134,7 +134,7 @@ const YTCMVideo = () => {
       <div className="ytmchome-main-container">
         <div>
           <Popup
-                        trigger={<button className="ytmcreportBtn">New +</button>}
+              trigger={<button className="ytmcreportBtn">New +</button>}
                         modal
                         nested
                     >
