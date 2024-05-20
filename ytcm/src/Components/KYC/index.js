@@ -64,23 +64,24 @@ const KYC = () => {
         getVideos();
       }, []);
 
-      const onDeleteKYC = async () => {
+      const onDeleteKYC = async (event) => {
+        event.preventDefault()
         const options = {
             method : "DELETE",
             headers : {
                 "Content-Type" : "application/json"
             },
-            body : JSON.stringify({email:userDetails.email})
+            body : JSON.stringify({email:Cookies.get("useremail")})
         }
-        console.log("I am called")
-        const response = await fetch('https://js-member-backend.vercel.app/deletekyc',options)
-        if(response.ok)
-            {
-                const data = await response.json()
-                console.log(data);
-            }
-        else
-        console.log("Error Occurred while updating the kyc")
+        const response  = await fetch(`https://js-member-backend.vercel.app/deletekyc`,options)
+        try{
+            const data = await response.json()
+            console.log(data);
+        }
+        catch(Err){
+            console.log(`Error Occurred : ${Err}`);
+        }
+        navigate("/profile",{replace:true})
     }
 
     // console.log(userDetails)
