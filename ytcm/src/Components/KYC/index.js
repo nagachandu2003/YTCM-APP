@@ -73,7 +73,7 @@ const KYC = () => {
             body : JSON.stringify({email:userDetails.email})
         }
         console.log("I am called")
-        const response = await fetch('http://localhost:3001/deletekyc',options)
+        const response = await fetch('https://js-member-backend.vercel.app/deletekyc',options)
         if(response.ok)
             {
                 const data = await response.json()
