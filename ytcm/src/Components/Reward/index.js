@@ -61,7 +61,7 @@ const Reward = () => {
       setIsLoading2(true)
       const email = Cookies.get("useremail");
       try{
-        const response = await fetch(`http://localhost:3001/claimeddetails/${email}`);
+        const response = await fetch(`https://js-member-backend.vercel.app/claimeddetails/${email}`);
         const data = await response.json();
         const {claimedDetails} = data;
         const newList = [...claimedVideosList,...claimedDetails];
@@ -84,7 +84,7 @@ const Reward = () => {
   if(claimList.length!==0)
   sumo = claimList.reduce((acc,item) => acc + item.days.reduce((acc1,item1) => acc1 + (parseInt(item1)/100),0),0).toFixed(2)
 
-  
+
 
 
   // const getVideos = async () => {

@@ -35,7 +35,7 @@ const Cart = () => {
             },
             body : JSON.stringify({email,claimeddetails : {rewardId:uuidv4(),cartList,totrewards,totvideos:cartList.length,claimDate:currDate,claimTime:currTime,status:'pending'}})
         }
-        const response = await fetch("http://localhost:3001/addclaimeditems",options);
+        const response = await fetch("https://js-member-backend.vercel.app/addclaimeditems",options);
         try{
             const data = await response.json();
             navigate("/reward",{replace:true})
