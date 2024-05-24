@@ -19,9 +19,11 @@ const Cart = () => {
   const navigate = useNavigate();
 
   let totrewards = 0;
+  let totviews = 0;
   for(let values of cartList)
     {
         totrewards += (values.days).reduce((ele,acc) => ele + (parseInt(acc)/100),0);
+        totviews += (values.days).reduce((ele,acc) => ele+parseInt(acc),0);
     }
 
     const onClaimVideos = async () => {
@@ -33,7 +35,7 @@ const Cart = () => {
             headers : {
                 "Content-Type" : "application/json"
             },
-            body : JSON.stringify({email,claimeddetails : {rewardId:uuidv4(),cartList,totrewards,totvideos:cartList.length,claimDate:currDate,claimTime:currTime,status:'pending'}})
+            body : JSON.stringify({email,claimeddetails : {rewardId:uuidv4(),cartList,totrewards,totviews,totvideos:cartList.length,claimDate:currDate,claimTime:currTime,status:'pending'}})
         }
         const response = await fetch("https://js-member-backend.vercel.app/addclaimeditems",options);
         try{
