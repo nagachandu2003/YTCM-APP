@@ -124,7 +124,7 @@ const Reward = () => {
       <header className="task-main-header-container">
         <h1 className="task-main-heading">Reward</h1>
         <button style={{border:'none',backgroundColor:'#ffff00'}} type="button" onClick={onClickCart}>
-        <p style={{fontSize:'16px',backgroundColor:'black',color:'white',padding:'5px',borderRadius:'5px'}}><FaShoppingCart style={{height:'20px',width:'20px'}}/> {sumo}</p>
+        <p style={{fontSize:'16px',backgroundColor:'black',color:'white',padding:'5px',borderRadius:'5px'}}><FaShoppingCart style={{height:'20px',width:'20px',color:'#ffff00'}}/> {sumo}</p>
         </button>
       </header>
       <nav style={{marginTop:'5px'}} className="task-tabs-container">
