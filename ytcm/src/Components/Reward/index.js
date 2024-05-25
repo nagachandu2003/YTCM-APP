@@ -4,6 +4,7 @@ import { FaRegFileAlt } from 'react-icons/fa';
 import { PiPresentationChartBold } from 'react-icons/pi';
 import { FcReadingEbook } from 'react-icons/fc';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { FaShoppingCart } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import RewardItem from '../RewardItem'
 import { ThreeDots } from 'react-loader-spinner';
@@ -122,9 +123,11 @@ const Reward = () => {
     <>
       <header className="task-main-header-container">
         <h1 className="task-main-heading">Reward</h1>
-        <p>Total : {sumo}</p>
+        <button style={{border:'none',backgroundColor:'#ffff00'}} type="button" onClick={onClickCart}>
+        <p style={{fontSize:'16px',backgroundColor:'black',color:'white',padding:'5px',borderRadius:'5px'}}><FaShoppingCart style={{height:'20px',width:'20px'}}/> {sumo}</p>
+        </button>
       </header>
-      <nav className="task-tabs-container">
+      <nav style={{marginTop:'5px'}} className="task-tabs-container">
         <div
           className={`task-tab ${activeTab === 'current' ? 'active' : ''}`}
           onClick={() => handleTabClick('current')}
@@ -158,16 +161,12 @@ const Reward = () => {
                 ))}
               </ul>
             )}
-            <div>
-              <button onClick={onClickCart} type="button" className="addtocartBtn">Add to Cart</button>
-            </div>
           </div>
           )}
           </section>
         )}
         {activeTab === 'claimed' && (
           <section>
-            <h1>Claimed Rewards</h1>
             {isLoading2===true && (
                     <div className="ytmchome-content-container" style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
                         <ThreeDots color="gray" height={50} width={50}/>

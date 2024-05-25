@@ -44,7 +44,7 @@ body {
     white-space: nowrap;
     z-index: 1; /* Ensure tabs are above content */
     position: fixed; /* Stick the tabs at the top */
-    top: 55px; /* Adjust based on header height */
+    top: 65px; /* Adjust based on header height */
     left: 0;
     width: 100%;
 }
