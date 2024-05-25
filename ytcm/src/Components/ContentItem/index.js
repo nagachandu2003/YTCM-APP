@@ -5,7 +5,7 @@ import { FaGoogleDrive } from "react-icons/fa";
 
 const ContentItem = (props) => {
     const {itemDetails,onCheckReward} = props
-    const {id,videoTitle,videoLink,source,videoType,status,date,videoId} = itemDetails
+    const {id,videoTitle,videoLink,source,videoType,status,date,videoId,time} = itemDetails
     let imageUrl;
     if(source==="Youtube")
         imageUrl = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
@@ -18,7 +18,7 @@ const ContentItem = (props) => {
             <div className="list-item-cont2">
             <img className="user-img" src={imageUrl} alt="thumbnail"/>
             <div style={{width:'80%',display:'flex',flexDirection:'column',alignItems:'flex-end'}}>
-            <p style={{margin:'0',fontSize:'13px'}}>{date}</p>
+            <p style={{margin:'0',fontSize:'13px'}}>{date} & {time}</p>
             <br/>
             <div style={{display:'flex',alignItems:'center',marginBottom:'5px'}}>
             {source==="Youtube"  && (<FaYoutube size={30} style={{backgroundColor:'red',color:'white',borderRadius:'8px',padding:'5px'}}/>)}
