@@ -3,17 +3,17 @@
   "name": "YTCM APP",
   "icons": [
     {
-      "src": "https://i.ibb.co/1mt9mcH/download.png",
+      "src": "download.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "https://i.ibb.co/1mt9mcH/download.png",
+      "src": "download.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://i.ibb.co/1mt9mcH/download.png",
+      "src": "download.png",
       "type": "image/png",
       "sizes": "512x512"
     }
