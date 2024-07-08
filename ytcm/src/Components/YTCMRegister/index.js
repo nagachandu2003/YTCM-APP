@@ -905,6 +905,14 @@ const blocks = {
 }
 
 
+const socialmediaplatforms = [
+  { OptionId: "Youtube" },
+    { OptionId: "Facebook" },
+    { OptionId: "Instagram" },
+    { OptionId: "X (Twitter)" },
+    { OptionId: "Whatsapp" },
+    { OptionId: "Telegram" },
+]
 
 const YTCMRegister = () => {
     const [name, setName] = useState('');
@@ -921,6 +929,11 @@ const YTCMRegister = () => {
     const [jsid, setJSID] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    const [youtube,setYoutubeUrl] = useState('');
+    const [facebook,setFacebookUrl] = useState('');
+    const [instagram,setInstagramUrl] = useState('');
+    const [twitter,setTwitterUrl] = useState('');
+    let [socialmedia, setSocialMedia] = useState([]);
     // const history = useHistory();
     const {Googlename,email} = location.state
 
@@ -940,6 +953,17 @@ const YTCMRegister = () => {
     const onChangeBlock = (event) => setBlock(event.target.value)
     const onChangeReferralCode = (event) => setReferral(event.target.value)
     const onChangeJSID = (event) => setJSID(event.target.value)
+    const onChangeSocialMedia = (event) => {
+      const { value, checked } = event.target;
+      
+      if (checked) {
+        socialmedia = [...socialmedia, value];
+      } else {
+        socialmedia = socialmedia.filter(district => district !== value);
+      }
+      
+      setSocialMedia( socialmedia );
+  }
 
     const postData = async (value) => {
       let options = {
@@ -971,11 +995,12 @@ const YTCMRegister = () => {
             videos:[],
             referral,
             jsid,
+            socialmedia,
             kycstatus:'pending'
         };
-        postData(formData);
+        console.log(formData)
         // history.replace("/regpending")
-        navigate("/pending",{replace:true})
+        navigate("/capturephoto", { state: formData},{replace:true})
         setRegisteredStatus(!registeredStatus);
     };
 
@@ -989,7 +1014,7 @@ const YTCMRegister = () => {
           {registeredStatus===false && (
               <>
           <div className="ytmcregister-top-container">
-              <h1>Register</h1>
+              <h1>Registration</h1>
           </div>
           <div className="ytmcregister-form-container">
           <form onSubmit={onSubmitRegisterYTMC}>
@@ -1003,11 +1028,36 @@ const YTCMRegister = () => {
               <br/>
               <input placeholder="Enter the Name" onChange={onChangeName} className="ytmcregister-user-input" type="text" id="username" required/>
               </div>
-              <div className="ytmcregister-cont-ele">
-              <label htmlFor="channelurl">Channel URL</label>
-              <br/>
-              <input placeholder="Enter the Channel Url" onChange={onChangeChannelUrl} className="ytmcregister-user-input" type="url" id="channelurl" required/>
+              <div>
+                  <label htmlFor="socialmedia">Can Manage</label>
+                  <br/>
+                  {socialmediaplatforms.map(option => (
+                      <div className="ytmcregister-user-input" key={option.OptionId}>
+                          <input type="checkbox" id={option.OptionId} value={option.OptionId} onChange={onChangeSocialMedia}/>
+                          <label htmlFor={option.OptionId}>{option.OptionId}</label>
+                      </div>
+                  ))}
               </div>
+              {/* <div className="ytmcregister-cont-ele">
+              <label htmlFor="youtube">Youtube</label>
+              <br/>
+              <input placeholder="Enter the Youtube Url" onChange={(e) => setYoutubeUrl(e.target.value)} className="ytmcregister-user-input" type="url" id="youtube" required/>
+              </div>
+              <div className="ytmcregister-cont-ele">
+              <label htmlFor="facebook">Facebook</label>
+              <br/>
+              <input placeholder="Enter the Facebook Url" onChange={(e) => setFacebookUrl(e.target.value)} className="ytmcregister-user-input" type="url" id="facebook" required/>
+              </div>
+              <div className="ytmcregister-cont-ele">
+              <label htmlFor="instagram">Instagram</label>
+              <br/>
+              <input placeholder="Enter the Instagram Url" onChange={(e) => setInstagramUrl(e.target.value)} className="ytmcregister-user-input" type="url" id="instagram" required/>
+              </div>
+              <div className="ytmcregister-cont-ele">
+              <label htmlFor="twitter">X (Twitter)</label>
+              <br/>
+              <input placeholder="Enter the Twitter Url" onChange={(e) => setTwitterUrl(e.target.value)} className="ytmcregister-user-input" type="url" id="twitter" required/>
+              </div> */}
               <div className="ytmcregister-cont-ele">
                   <label htmlFor="state">State</label>
                   <br/>
@@ -1046,7 +1096,7 @@ const YTCMRegister = () => {
               <div className="ytmcregister-cont-ele">
                   <label htmlFor="whatsappno">Whatsapp Number</label>
                   <br/>
-                  <input onChange={onChangeWhatsApp} placeholder="Enter the whatsapp number E.g : +91 987654321" pattern="^\+91(?:[0-9] ?){6,14}[0-9]$" className="ytmcregister-user-input" type="tel" id="whatsappno" required/>
+                  <input onChange={onChangeWhatsApp} className="ytmcregister-user-input" type="tel" id="whatsappno" placeholder='Enter the Whatsapp No' required/>
               </div>
               <div className="ytmcregister-cont-ele">
                   <label htmlFor="referralcode">Referral Code</label>
@@ -1054,7 +1104,7 @@ const YTCMRegister = () => {
                   <input onChange={onChangeReferralCode} placeholder="Enter the Referral Code :" className="ytmcregister-user-input" type="text" id="referralcode" required/>
               </div>
               <div style={{textAlign:'center'}}>
-              <button className="fetchBtn" type="submit">Register</button>
+              <button className="fetchBtn" type="submit">Submit</button>
               </div>
           </form>
       </div>

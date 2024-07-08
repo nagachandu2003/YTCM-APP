@@ -13,7 +13,9 @@ import Reward from './Components/Reward'
 import Content from './Components/Content'
 import KYC from './Components/KYC'
 import Cart from './Components/Cart'
+import YTCMMedia from './Components/YTCMMedia';
 import {dataContext} from './Components/Context/context'
+import CapturePhoto from './Components/CapturePhoto';
 
 const App = () => {
   const [cartList,setCartList] = useState([]);
@@ -46,7 +48,9 @@ const App = () => {
         <Route path="/" element={<YTCMLogin/>}/>
         <Route exact path="/report" element={<YTCMReport/>}/>
         <Route exact path="/pending" element={<RegistrationPending/>}/>
+        <Route exact path="/ytcmmedia" element={<YTCMMedia/>}/>
         <Route exact path="/register" element={<YTCMRegister/>}/>
+        <Route exact path="/capturephoto" element={<CapturePhoto/>}/>
         <Route exact path="/video/:channelName" element={<YTCMVideo/>}/>
         <Route exact path="/video/videoinfo/:channelName/:videoid" element={<YTMCVideoDetailItem/>}/>
         <Route exact path="/profile" element={<Profile/>}/>

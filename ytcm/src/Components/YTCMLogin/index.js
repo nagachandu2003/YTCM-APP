@@ -71,7 +71,8 @@ const YTCMLogin = () => {
         <img src="https://res.cloudinary.com/dylh46szw/image/upload/v1711793425/favicon2_pef2lb.jpg" className='login-logo' alt="img"/>
       </div>
       <form className="login-form" onSubmit={onSubmitUser}>
-         <h1 className="main-heading">YTCM Login</h1>
+         <h1 className="main-heading">JS SMP Login</h1>
+         <p style={{textAlign:'center',fontSize:'13px'}}>Social Media Prabhari</p>
         {/* <div className="form-ele">
           <label className='label-ele' htmlFor="username">Username</label>
           <br />
@@ -123,7 +124,7 @@ const YTCMLogin = () => {
             else if(res===false)
                 navigate("/register",{ state: {email,Googlename:name}},{replace:true} )
             else 
-              navigate("/report", {replace:true})
+              navigate("/ytcmmedia", {replace:true})
             }}
             onError={() => {
                 console.log("Login Failed")
