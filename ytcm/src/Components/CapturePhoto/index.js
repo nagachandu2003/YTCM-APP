@@ -84,6 +84,7 @@ const CapturePhoto = () => {
         imageData:capturedImage
       }
       // console.log(finalData)
+      // console.log(finalData)
       await postData(finalData)
       navigate("/pending")
       

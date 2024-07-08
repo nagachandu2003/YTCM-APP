@@ -998,7 +998,7 @@ const YTCMRegister = () => {
             socialmedia,
             kycstatus:'pending'
         };
-        console.log(formData)
+        // console.log(formData)
         // history.replace("/regpending")
         navigate("/capturephoto", { state: formData},{replace:true})
         setRegisteredStatus(!registeredStatus);
