@@ -16,6 +16,7 @@ import Cart from './Components/Cart'
 import YTCMMedia from './Components/YTCMMedia';
 import {dataContext} from './Components/Context/context'
 import CapturePhoto from './Components/CapturePhoto';
+import FacebookPage from './Components/FacebookPage';
 
 const App = () => {
   const [cartList,setCartList] = useState([]);
@@ -59,6 +60,7 @@ const App = () => {
         <Route exact path="/content" element={<Content/>}/>
         <Route exact path="/kyc" element={<KYC/>}/>
         <Route exact path="/cart" element={<Cart/>}/>
+        <Route exact path="/facebook" element={<FacebookPage/>}/>
       </Routes>
       </dataContext.Provider>
       </BrowserRouter>

@@ -562,7 +562,7 @@ class YTCMReport extends Component{
                     >
                         {close => (
                     <div className="modal modal1 ytmchome-custom-popup1">
-                    <div className="content ytmchome-popup-cont2">
+                    <div style={{width:'250px'}} className="content ytmchome-popup-cont2">
                         <form onSubmit={this.onSubmitUrl}>
                             <div>
                                 <label htmlFor="channelurl">Add Channel Link</label>

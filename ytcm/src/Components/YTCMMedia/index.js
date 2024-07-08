@@ -78,19 +78,19 @@ class YTCMMedia extends Component{
           </Link>
     )}
     {facebook && (
-        <Link to='/selfie' className='grid-card facebook'>
+        <Link to='/facebook' className='grid-card facebook'>
             <FaFacebook className='icon' />
             <h2 className='heading-grid'>Facebook</h2>
           </Link>
     )}
     {instagram && (
-          <Link to='/d2d' className='grid-card instagram'>
+          <Link to='/instagram' className='grid-card instagram'>
             <FaInstagram className='icon' />
             <h2 className='heading-grid'>Instagram</h2>
           </Link>
         )}
         {twitter && (
-          <Link to='/kyc' className='grid-card grid-card-5'>
+          <Link to='/twitter' className='grid-card grid-card-5'>
             <FaTwitter className='icon' />
             <h2 className='heading-grid'>X (Twitter)</h2>
           </Link>
@@ -110,7 +110,7 @@ class YTCMMedia extends Component{
           </Link>
         )}
         {telegram && (
-          <Link to='/digitalinfluencer' className='grid-card grid-card-4'>
+          <Link to='/telegram' className='grid-card grid-card-4'>
             <FaTelegramPlane className='icon' />
             <h2 className='heading-grid'>Telegram</h2>
           </Link>
