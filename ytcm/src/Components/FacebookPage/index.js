@@ -112,6 +112,7 @@ class FacebookPage extends Component{
                     {(channelsList.length===0)? (<p>Please add Facebook Profile</p>):
                     (<ul className="ytmchome-channel-container">
                         {channelsList.map((ele,index) => <p key={index}>{ele}</p>)}
+                        
                       {/* {channelsList.map((ele) => <YTMCChannelItem key={ele.id} itemDetails={ele}/>)} */}
                     </ul>)
                     }
