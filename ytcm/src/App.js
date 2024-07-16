@@ -17,6 +17,9 @@ import YTCMMedia from './Components/YTCMMedia';
 import {dataContext} from './Components/Context/context'
 import CapturePhoto from './Components/CapturePhoto';
 import FacebookPage from './Components/FacebookPage';
+import Stats from './Components/Stats'
+import UploadVideo from './Components/UploadVideo';
+import Success from './Components/Success';
 
 const App = () => {
   const [cartList,setCartList] = useState([]);
@@ -61,6 +64,9 @@ const App = () => {
         <Route exact path="/kyc" element={<KYC/>}/>
         <Route exact path="/cart" element={<Cart/>}/>
         <Route exact path="/facebook" element={<FacebookPage/>}/>
+        <Route exact path="/stats" element={<Stats/>}/>
+        <Route exact path="/uploadvideo" element={<UploadVideo/>}/>
+        <Route exact path="/success/:videoId" element={<Success/>}/>
       </Routes>
       </dataContext.Provider>
       </BrowserRouter>

@@ -16,6 +16,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { IoLogoWhatsapp } from "react-icons/io5";
+import { FaUpload } from "react-icons/fa";
 
 class YTCMMedia extends Component{
     state = {channelsList:[],channelUrl:'',socialmedialist:[],isLoading:false,youtube:false,facebook:false,twitter:false,instagram:false,telegram:false,whatsapp:false}
@@ -71,6 +72,10 @@ class YTCMMedia extends Component{
                 <div className="ytmchome-content-container">
                           <div  className='grid-container'>
         <div className='grid-row'>
+        <Link to='/uploadvideo' className='grid-card grid-card-6'>
+            <FaUpload className='icon' />
+            <h2 className='heading-grid'>Upload Video</h2>
+          </Link>
         {youtube && (
             <Link to='/report' className='grid-card youtube'>
             <FaYoutube className='icon' />
