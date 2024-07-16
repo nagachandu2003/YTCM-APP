@@ -11,59 +11,59 @@ const UploadVideo = () => {
     })
     const [uploadStatus, setUploadStatus] = useState("")
 
-    const onUploadVideo = async (event) => {
-        event.preventDefault();
-        setUploadStatus("Initiating upload...");
-        const videoData = new FormData();
-        videoData.append("videoFile", form.file);
-        videoData.append("title", form.title);
-        videoData.append("description", form.description);
-
-        try {
-            const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, videoData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            
-            if (response.data.authUrl) {
-                setUploadStatus("Please complete authentication in the new window.");
-                window.open(response.data.authUrl, "YouTube Auth", "width=800,height=600");
-            } else {
-                setUploadStatus("Upload initiated. Waiting for completion...");
-            }
-        } catch (err) {
-            console.error(err);
-            setUploadStatus("Upload failed. See console for details.");
-        }
-    };
-
     // const onUploadVideo = async (event) => {
     //     event.preventDefault();
-    //     setUploadStatus("Initiating upload...")
+    //     setUploadStatus("Initiating upload...");
     //     const videoData = new FormData();
     //     videoData.append("videoFile", form.file);
     //     videoData.append("title", form.title);
     //     videoData.append("description", form.description);
 
     //     try {
-    //         const response = await axios.post(`http://localhost:3001/uploadvideo`, videoData, {
+    //         const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, videoData, {
     //             headers: {
     //                 'Content-Type': 'multipart/form-data'
     //             }
     //         });
             
     //         if (response.data.authUrl) {
-    //             setUploadStatus("Please complete authentication in the new window.")
-    //             window.open(response.data.authUrl, "_blank")
+    //             setUploadStatus("Please complete authentication in the new window.");
+    //             window.open(response.data.authUrl, "YouTube Auth", "width=800,height=600");
     //         } else {
-    //             setUploadStatus("Upload initiated. Check console for progress.")
+    //             setUploadStatus("Upload initiated. Waiting for completion...");
     //         }
     //     } catch (err) {
     //         console.error(err);
-    //         setUploadStatus("Upload failed. See console for details.")
+    //         setUploadStatus("Upload failed. See console for details.");
     //     }
-    // }
+    // };
+
+    const onUploadVideo = async (event) => {
+        event.preventDefault();
+        setUploadStatus("Initiating upload...")
+        const videoData = new FormData();
+        videoData.append("videoFile", form.file);
+        videoData.append("title", form.title);
+        videoData.append("description", form.description);
+
+        try {
+            const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo/uploadvideo`, videoData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            
+            if (response.data.authUrl) {
+                setUploadStatus("Please complete authentication in the new window.")
+                window.open(response.data.authUrl, "_blank")
+            } else {
+                setUploadStatus("Upload initiated. Check console for progress.")
+            }
+        } catch (err) {
+            console.error(err);
+            setUploadStatus("Upload failed. See console for details.")
+        }
+    }
 
     const handleChange = (event) => {
         const inputValue = event.target.name === "file" ? event.target.files[0] : event.target.value;
