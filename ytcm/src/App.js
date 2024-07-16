@@ -20,6 +20,7 @@ import FacebookPage from './Components/FacebookPage';
 import Stats from './Components/Stats'
 import UploadVideo from './Components/UploadVideo';
 import Success from './Components/Success';
+import AuthCallback from './Components/AuthCallback';
 
 const App = () => {
   const [cartList,setCartList] = useState([]);
@@ -56,7 +57,7 @@ const App = () => {
         <Route exact path="/register" element={<YTCMRegister/>}/>
         <Route exact path="/capturephoto" element={<CapturePhoto/>}/>
         <Route exact path="/video/:channelName" element={<YTCMVideo/>}/>
-        
+
         <Route exact path="/video/videoinfo/:channelName/:videoid" element={<YTMCVideoDetailItem/>}/>
         <Route exact path="/profile" element={<Profile/>}/>
         <Route exact path="/account" element={<Account/>}/>
@@ -68,6 +69,7 @@ const App = () => {
         <Route exact path="/stats" element={<Stats/>}/>
         <Route exact path="/uploadvideo" element={<UploadVideo/>}/>
         <Route exact path="/success/:videoId" element={<Success/>}/>
+        <Route path="/auth-callback" element={<AuthCallback />} />
       </Routes>
       </dataContext.Provider>
       </BrowserRouter>
