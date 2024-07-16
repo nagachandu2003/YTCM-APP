@@ -47,7 +47,7 @@ const UploadVideo = () => {
         videoData.append("description", form.description);
 
         try {
-            const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo/uploadvideo`, videoData, {
+            const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, videoData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
