@@ -72,10 +72,7 @@ class YTCMMedia extends Component{
                 <div className="ytmchome-content-container">
                           <div  className='grid-container'>
         <div className='grid-row'>
-        <Link to='/uploadvideo' className='grid-card grid-card-6'>
-            <FaUpload className='icon' />
-            <h2 className='heading-grid'>Upload Video</h2>
-          </Link>
+
         {youtube && (
             <Link to='/report' className='grid-card youtube'>
             <FaYoutube className='icon' />
@@ -120,6 +117,10 @@ class YTCMMedia extends Component{
             <h2 className='heading-grid'>Telegram</h2>
           </Link>
         )}
+                <Link to='/uploadvideo' className='grid-card grid-card-6'>
+            <FaUpload className='icon' />
+            <h2 className='heading-grid'>Automate</h2>
+          </Link>
           {/* <Link to='/maps' className='grid-card maps'>
             <FaMapLocationDot className='icon' />
             <h2 className='heading-grid'>Maps</h2>
