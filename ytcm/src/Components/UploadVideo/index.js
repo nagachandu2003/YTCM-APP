@@ -70,7 +70,7 @@ const UploadVideo = () => {
           const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, {
             title: form.title,
             description: form.description,
-            videoUrl: "https://jsvahinibucket1.s3.amazonaws.com/3a798a9b-f443-485c-af5a-6e4d98a12709.mp4"
+            videoUrl: form.videofile
           });
           
           if (response.data.authUrl) {
