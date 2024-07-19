@@ -7,7 +7,7 @@ const UploadVideo = () => {
     const [form, setForm] = useState({
         title: "",
         description: "",
-        file: null
+        videofile: ''
     })
     const [uploadStatus, setUploadStatus] = useState("")
 
@@ -38,32 +38,83 @@ const UploadVideo = () => {
     //     }
     // };
 
+    const getUrl = async (file) => {
+        const formData = new FormData();
+        formData.append('file', file);
+    
+        try {
+          const response = await fetch('https://js-member-backend.vercel.app/upload', {method:"POST",body:formData});
+          const data = await response.json()
+          return data.Location
+        } catch (error) {
+          alert("File Upload Failed")
+          console.error('Error uploading file:', error.response ? error.response.data : error.message);
+        }
+      }
+
+      const handleVideoChange = async (e) => {
+                const file = e.target.files[0];
+            const fileUrl = await getUrl(file)
+            setForm((prev) => ({
+                ...prev,
+                videofile:fileUrl
+            }))
+      }
+
     const onUploadVideo = async (event) => {
         event.preventDefault();
-        setUploadStatus("Initiating upload...")
-        const videoData = new FormData();
-        videoData.append("videoFile", form.file);
-        videoData.append("title", form.title);
-        videoData.append("description", form.description);
-
+        if(form.videofile!==""){
+        setUploadStatus("Initiating upload...");
+    
         try {
-            const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, videoData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            
-            if (response.data.authUrl) {
-                setUploadStatus("Please complete authentication in the new window.")
-                window.open(response.data.authUrl, "_blank")
-            } else {
-                setUploadStatus("Upload initiated. Check console for progress.")
-            }
+          const response = await axios.post(`http://localhost:3001/uploadvideo`, {
+            title: form.title,
+            description: form.description,
+            videoUrl: "https://jsvahinibucket1.s3.amazonaws.com/3a798a9b-f443-485c-af5a-6e4d98a12709.mp4"
+          });
+          
+          if (response.data.authUrl) {
+            setUploadStatus("Please complete authentication in the new window.");
+            window.open(response.data.authUrl, "_blank");
+          } else {
+            setUploadStatus("Something went wrong. Please try again.");
+          }
         } catch (err) {
-            console.error(err);
-            setUploadStatus("Upload failed. See console for details.")
+          console.error(err);
+          setUploadStatus("Upload failed. See console for details.");
         }
     }
+    else{
+        alert("Please Wait Video File is Loading...")
+    }
+      };
+
+    // const onUploadVideo = async (event) => {
+    //     event.preventDefault();
+    //     setUploadStatus("Initiating upload...")
+    //     const videoData = new FormData();
+    //     videoData.append("videoFile", form.videoLink);
+    //     videoData.append("title", form.title);
+    //     videoData.append("description", form.description);
+
+    //     try {
+    //         const response = await axios.post(`http://localhost:3001/uploadvideo`, videoData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data'
+    //             }
+    //         });
+            
+    //         if (response.data.authUrl) {
+    //             setUploadStatus("Please complete authentication in the new window.")
+    //             window.open(response.data.authUrl, "_blank")
+    //         } else {
+    //             setUploadStatus("Upload initiated. Check console for progress.")
+    //         }
+    //     } catch (err) {
+    //         console.error(err);
+    //         setUploadStatus("Upload failed. See console for details.")
+    //     }
+    // }
 
     const handleChange = (event) => {
         const inputValue = event.target.name === "file" ? event.target.files[0] : event.target.value;
@@ -94,7 +145,7 @@ const UploadVideo = () => {
                         <div className="ytmcregister-cont-ele">
                             <label htmlFor="accountNumber">Upload Video</label>
                             <br />
-                            <input placeholder="Upload the Video" onChange={handleChange} className="ytmcregister-user-input" type="file" id="videofile" accept="video/*" name="file" required />
+                            <input placeholder="Upload the Video" onChange={handleVideoChange} className="ytmcregister-user-input" type="file" id="videofile" accept="video/*" name="file" required />
                         </div>
                         <div style={{ textAlign: 'center' }}>
                             <button className="fetchBtn" type="submit">Submit</button>
