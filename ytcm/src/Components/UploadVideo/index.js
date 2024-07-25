@@ -79,7 +79,7 @@ const UploadVideo = () => {
         formData.append('file', file);
     
         try {
-          const response = await fetch('http://localhost:3001/upload', {method:"POST",body:formData});
+          const response = await fetch('https://js-member-backend.vercel.app/upload', {method:"POST",body:formData});
           const data = await response.json()
           console.log(data);
           return data.fileUrl
