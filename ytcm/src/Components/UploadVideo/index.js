@@ -38,14 +38,51 @@ const UploadVideo = () => {
     //     }
     // };
 
+    // const getUrl = async (file) => {
+    //   const formData = new FormData();
+    //   formData.append('file', file);
+    
+    //   try {
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open('POST', 'http://localhost:3001/upload', true);
+    
+    //     xhr.upload.onprogress = (event) => {
+    //       if (event.lengthComputable) {
+    //         const percentComplete = (event.loaded / event.total) * 100;
+    //         console.log(`Upload progress: ${percentComplete.toFixed(2)}%`);
+    //       }
+    //     };
+    
+    //     xhr.onload = () => {
+    //       if (xhr.status === 200) {
+    //         const data = JSON.parse(xhr.responseText);
+    //         console.log('Upload completed successfully');
+    //         return data.Location;
+    //       } else {
+    //         throw new Error('Upload failed');
+    //       }
+    //     };
+    
+    //     xhr.onerror = () => {
+    //       throw new Error('Network error occurred');
+    //     };
+    
+    //     xhr.send(formData);
+    //   } catch (error) {
+    //     alert("File Upload Failed");
+    //     console.error('Error uploading file:', error.message);
+    //   }
+    // };
+
     const getUrl = async (file) => {
         const formData = new FormData();
         formData.append('file', file);
     
         try {
-          const response = await fetch('https://js-member-backend.vercel.app/upload', {method:"POST",body:formData});
+          const response = await fetch('http://localhost:3001/upload', {method:"POST",body:formData});
           const data = await response.json()
-          return data.Location
+          console.log(data);
+          return data.fileUrl
         } catch (error) {
           alert("File Upload Failed")
           console.error('Error uploading file:', error.response ? error.response.data : error.message);
@@ -55,6 +92,7 @@ const UploadVideo = () => {
       const handleVideoChange = async (e) => {
                 const file = e.target.files[0];
             const fileUrl = await getUrl(file)
+            console.log(fileUrl);
             setForm((prev) => ({
                 ...prev,
                 videofile:fileUrl
@@ -63,11 +101,12 @@ const UploadVideo = () => {
 
     const onUploadVideo = async (event) => {
         event.preventDefault();
+        console.log(form.videofile);
         if(form.videofile!==""){
         setUploadStatus("Initiating upload...");
     
         try {
-          const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, {
+          const response = await axios.post(`http://localhost:3001/uploadvideo`, {
             title: form.title,
             description: form.description,
             videoUrl: form.videofile
