@@ -106,7 +106,7 @@ const UploadVideo = () => {
         setUploadStatus("Initiating upload...");
     
         try {
-          const response = await axios.post(`http://localhost:3001/uploadvideo`, {
+          const response = await axios.post(`https://js-member-backend.vercel.app/uploadvideo`, {
             title: form.title,
             description: form.description,
             videoUrl: form.videofile
